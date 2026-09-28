@@ -40,10 +40,19 @@ a:focus-visible, .btn:focus-visible, .navlinks a:focus-visible { outline: 2px so
    ONE asset (FULL_LOCKUP_SVG) -- never a hand-placed icon next to
    separately-typed text (the exact pre-v3 spacing bug Kevin flagged live
    on the site 2026-09-27) and never a plain-type fallback (Kevin
-   rejected that on the app side the same way, D-031). The mark never
-   renders below 24px tall -- default 32px, steps down to the 24px floor
-   on narrow screens (below) and stays there; it does not keep shrinking
-   past it and does not get swapped for text. */
+   rejected that on the app side the same way, D-031).
+
+   The .lockup height below sizes the whole svg BOX (viewBox 748.95x104),
+   not the R mark's own ink -- the mark block occupies only the bottom 80
+   of those 104 units (24 units of margin above it), so the mark's actual
+   rendered height is box-height * 80/104. At 32px that's ~24.6px, at
+   Kevin's 24px floor. Fixed one narrow-screen height step down to 24px
+   here (2026-09-28, Dev Producer's review of the first push): that made
+   the BOX 24px, so the mark itself came out to ~18.5px -- under the
+   floor, the exact blur case this rule exists to prevent. Kept at a
+   single 32px box at every width instead: ~230px wide at 32px, which
+   fits a 375px screen with room for the 16px gutters either side, so
+   there's no narrow-width case that actually needs a smaller box. */
 .brand { display: flex; align-items: center; gap: 16px; text-decoration: none; }
 .lockup { display: block; height: 32px; }
 .lockup svg { display: block; height: 100%; width: auto; filter: drop-shadow(0 0 6px var(--accent-soft)); }
@@ -144,14 +153,11 @@ footer a { color: var(--ink-2); }
   .beta-chip { display: none; }
   .btn { flex: 1 1 100%; justify-content: center; }
   .navlinks { gap: 14px; }
-  /* D-031: the lockup steps down to its 24px floor on narrow screens and
-     stops there -- never smaller (5 bars go sub-pixel and blur into mush
-     below 24px, confirmed by rendering natively, not just downsampling),
-     and never swapped for plain type (Kevin rejected that fallback on
-     the app side the same way, 2026-09-28). .top and .navwrap already
-     wrap, so the nav drops to its own line before the mark would ever
-     need to shrink further. */
-  .lockup { height: 24px; }
+  /* D-031: no narrow-screen step for .lockup -- see the comment on .top
+     above for why (the box height isn't the mark's own height; a smaller
+     box pushed the mark under the 24px floor). The lockup stays a
+     constant 32px box at every width; .top/.navwrap absorb narrow-width
+     pressure by wrapping the nav instead. */
 }
 </style>
 </head>
