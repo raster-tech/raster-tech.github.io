@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon-16.png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<title>Raster Tech Sheet -- Know before places.</title>
+<meta name="description" content="Raster Tech Sheet checks every device on your show network against your tech sheet, and writes the proof back into it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+:root {
+  color-scheme: dark;
+  --ground: #0f1115; --surface: #171a21; --surface-2: #1e212a;
+  --line: #262b36; --line-2: #333a47;
+  --ink: #e6e8eb; --ink-2: #b7bcc6; --muted: #8b909c;
+  --accent: #70fb3a; --accent-hover: #8bff5c; --on-accent: #0f1115;
+  --accent-soft: rgba(112, 251, 58, 0.16);
+  --brand-blue: #4a9eff; --brand-blue-soft: rgba(74, 158, 255, 0.16);
+  --warn: #e0b93d; --warn-soft: #3a3315; --warn-line: #6b591f;
+  --display: "Barlow Condensed", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --r: 10px; --wrap: 1120px;
+}
+* { box-sizing: border-box; }
+html { background: var(--ground); }
+body { margin: 0; background: var(--ground); color: var(--ink); font: 400 17px/1.6 var(--body); padding-inline: 20px; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand-blue); }
+a:focus-visible, .btn:focus-visible, .navlinks a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: var(--wrap); margin-inline: auto; }
+
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; padding-block: 20px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand .mark { width: 32px; height: 32px; color: var(--accent); filter: drop-shadow(0 0 6px var(--accent-soft)); }
+.wordmark { font: 800 24px/1 var(--display); letter-spacing: .01em; white-space: nowrap; }
+.wordmark .a { color: var(--accent); text-shadow: 0 0 6px var(--accent-soft); }
+.wordmark .p { color: var(--brand-blue); }
+.navwrap { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.navlinks { display: flex; gap: 22px; }
+.navlinks a { color: var(--ink-2); text-decoration: none; font: 600 15px var(--display); letter-spacing: .01em; }
+.navlinks a[aria-current="page"] { color: var(--ink); }
+.navlinks a:hover { color: var(--ink); }
+.beta-chip { font: 500 12px/1 var(--mono); color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 5px 7px; letter-spacing: .04em; }
+
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 8px; font: 700 18px/1 var(--display); letter-spacing: .02em; text-decoration: none; transition: background-color .15s ease; }
+.btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 0 24px var(--accent-soft); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-ghost { color: var(--ink); border: 1px solid var(--line-2); }
+.btn-ghost:hover { background: var(--surface); }
+.btn svg { width: 18px; height: 18px; }
+
+.hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: center; padding-block: 48px 48px; }
+.hero.text-only { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
+.eyebrow { font: 500 13px/1.4 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin: 0 0 16px; }
+h1 { font: 800 clamp(48px, 7vw, 88px)/.95 var(--display); text-transform: uppercase; letter-spacing: -.005em; margin: 0; color: var(--ink); text-wrap: balance; }
+h2 { font: 700 clamp(30px, 3.6vw, 40px)/1.05 var(--display); text-transform: uppercase; margin: 0 0 30px; text-wrap: balance; }
+h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
+.sub { font-size: 19px; color: var(--ink-2); max-width: 34em; margin: 22px 0 30px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.fine { font: 400 13px/1.5 var(--mono); color: var(--muted); margin: 18px 0 0; }
+.board { position: relative; margin: 0 0 72px; }
+.board::before { content: ""; position: absolute; inset: -12% -8%; background: radial-gradient(closest-side, var(--brand-blue-soft), transparent); pointer-events: none; }
+.board > img { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
+.board figcaption { position: relative; font: 400 12px/1.4 var(--mono); color: var(--muted); margin-top: 12px; }
+
+section.pagehead { padding-block: 44px 8px; }
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+.features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.feature { display: flex; flex-direction: column; gap: 18px; }
+.feature .art { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); aspect-ratio: 8 / 5; max-width: 100%; display: grid; place-items: center; overflow: hidden; }
+.feature .art > svg { width: 100%; height: auto; display: block; }
+.feature p { margin: 0; color: var(--ink-2); font-size: 16px; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
+.steps li { counter-increment: step; padding-top: 20px; border-top: 2px solid var(--line-2); color: var(--ink-2); font-size: 16px; }
+.steps li::before { content: counter(step, decimal-leading-zero); display: block; font: 500 13px/1 var(--mono); color: var(--brand-blue); margin-bottom: 14px; letter-spacing: .06em; }
+.steps strong { display: block; font: 700 22px/1.15 var(--display); color: var(--ink); margin-bottom: 6px; }
+
+.credit { font: 600 clamp(22px, 2.6vw, 30px)/1.3 var(--display); color: var(--ink-2); max-width: 30em; margin: 0; text-wrap: balance; }
+.credit b { color: var(--ink); font-weight: 700; }
+
+footer { border-top: 1px solid var(--line); padding-block: 32px 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; color: var(--muted); font-size: 14px; }
+footer p { margin: 0; max-width: 46em; }
+footer a { color: var(--ink-2); }
+
+.sweep { transform-box: view-box; transform-origin: 120px 75px; animation: sweep 6s linear infinite; }
+@keyframes sweep { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .sweep { animation: none; } .btn { transition: none; } }
+
+/* -------- pricing -------- */
+.price-note { font-family: var(--body); color: var(--ink-2); max-width: 60em; margin: 0 0 30px; font-size: 16px; }
+.price-note b { color: var(--ink); }
+.pricing-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+.pricing-table th, .pricing-table td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 15.5px; }
+.pricing-table th { font: 700 15px var(--display); text-transform: uppercase; letter-spacing: .03em; color: var(--ink); background: var(--surface); }
+.pricing-table td:first-child, .pricing-table th:first-child { color: var(--muted); font: 500 13px var(--mono); width: 220px; }
+.pricing-table td { color: var(--ink-2); }
+.pricing-table .price { font: 800 22px var(--display); color: var(--ink); }
+.includes { font-family: var(--body); color: var(--ink-2); font-size: 15.5px; margin: 20px 0; padding-left: 20px; }
+.includes li { margin-bottom: 6px; }
+.founding { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; font-family: var(--body); color: var(--ink-2); font-size: 15px; margin: 20px 0 30px; }
+.founding b { color: var(--ink); }
+
+/* -------- FAQ (details/summary, works without JS) -------- */
+.faq { display: flex; flex-direction: column; gap: 10px; margin: 0 0 8px; }
+.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 4px 18px; }
+.faq summary { font: 700 17px var(--display); color: var(--ink); padding: 14px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 22px; color: var(--muted); font-weight: 400; flex: none; }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p, .faq details ul { font-family: var(--body); color: var(--ink-2); font-size: 15.5px; margin: 0 0 16px; padding-left: 0; }
+.faq details ul { padding-left: 20px; }
+
+/* -------- beta page -------- */
+.reqs { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 22px; font-family: var(--body); font-size: 15.5px; color: var(--ink-2); margin: 0 0 30px; }
+.reqs b { color: var(--ink); }
+.platform-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0; }
+.support-intro { font-family: var(--body); color: var(--ink-2); font-size: 16px; max-width: 68em; margin-bottom: 8px; }
+.support-intro b { color: var(--ink); }
+.support-cat h2 { margin-bottom: 18px; }
+.alert-line { background: var(--warn-soft); border: 1px solid var(--warn-line); color: var(--warn); border-radius: 8px; padding: 12px 16px; font: 600 14px var(--mono); margin: 0 0 24px; }
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding-block: 24px 56px; }
+  .features, .steps { grid-template-columns: 1fr; }
+  .feature .art { max-width: 420px; }
+  .pricing-table { font-size: 14px; }
+  .pricing-table td:first-child, .pricing-table th:first-child { width: 140px; }
+}
+@media (max-width: 420px) {
+  body { padding-inline: 16px; }
+  .beta-chip { display: none; }
+  .btn { flex: 1 1 100%; justify-content: center; }
+  .navlinks { gap: 14px; }
+}
+</style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/" aria-label="Raster Tech Sheet, home" aria-current="page">
+      <span class="mark"><svg viewBox="24 24 80 80" width="1em" height="1em" aria-hidden="true" focusable="false">
+<mask id="rmask"><rect x="24.0" y="24.0" width="80.0" height="80.0" fill="black"/><rect x="24.000" y="24.000" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="41.067" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="58.133" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="75.200" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="92.267" width="80.000" height="11.733" fill="white"/><path d="M68.72685714285714 100.52571428571429 61.42171428571429 72.05714285714285Q61.31428571428572 71.62742857142857 60.884571428571434 71.62742857142857H59.27314285714286Q58.736000000000004 71.62742857142857 58.736000000000004 72.16457142857143V100.31085714285713Q58.736000000000004 100.848 58.36 101.22399999999999Q57.984 101.6 57.44685714285714 101.6H42.192Q41.654857142857146 101.6 41.27885714285715 101.22399999999999Q40.902857142857144 100.848 40.902857142857144 100.31085714285713V27.689142857142855Q40.902857142857144 27.152 41.27885714285715 26.776000000000003Q41.654857142857146 26.400000000000006 42.192 26.400000000000006H65.28914285714285Q71.52 26.400000000000006 76.35428571428571 29.354285714285716Q81.18857142857144 32.308571428571426 83.82057142857143 37.626285714285714Q86.45257142857142 42.944 86.45257142857142 49.712Q86.45257142857142 55.728 84.25028571428571 60.50857142857143Q82.048 65.28914285714285 78.07314285714286 68.18971428571427Q77.85828571428571 68.29714285714286 77.75085714285714 68.45828571428572Q77.64342857142857 68.61942857142857 77.75085714285714 68.83428571428571L86.98971428571429 100.09599999999999L87.09714285714286 100.52571428571429Q87.09714285714286 101.6 85.91542857142858 101.6H70.23085714285713Q69.04914285714285 101.6 68.72685714285714 100.52571428571429ZM58.736000000000004 42.192V57.44685714285714Q58.736000000000004 57.984 59.27314285714286 57.984H62.281142857142854Q65.18171428571429 57.984 66.90057142857142 55.83542857142857Q68.61942857142857 53.68685714285714 68.61942857142857 49.926857142857145Q68.61942857142857 45.952 66.90057142857142 43.80342857142857Q65.18171428571429 41.654857142857146 62.281142857142854 41.654857142857146H59.27314285714286Q58.736000000000004 41.654857142857146 58.736000000000004 42.192Z" fill="black" fill-rule="evenodd"/></mask>
+<rect x="24.0" y="24.0" width="80.0" height="80.0" fill="currentColor" mask="url(#rmask)"/>
+<path d="M58.736000000000004 42.192V57.44685714285714Q58.736000000000004 57.984 59.27314285714286 57.984H62.281142857142854Q65.18171428571429 57.984 66.90057142857142 55.83542857142857Q68.61942857142857 53.68685714285714 68.61942857142857 49.926857142857145Q68.61942857142857 45.952 66.90057142857142 43.80342857142857Q65.18171428571429 41.654857142857146 62.281142857142854 41.654857142857146H59.27314285714286Q58.736000000000004 41.654857142857146 58.736000000000004 42.192Z" fill="currentColor"/>
+</svg></span>
+      <span class="wordmark"><span class="a">ASTER</span> <span class="p">Tech Sheet</span></span>
+    </a>
+    <div class="navwrap">
+      <nav class="navlinks" aria-label="Main"><a href="/pricing/">Pricing</a><a href="/beta/">Beta</a><a href="/support/">Support</a></nav>
+      <span class="beta-chip">EARLY BETA</span>
+    </div>
+  </header>
+  <main id="top">
+    <div class="hero text-only">
+      <div>
+        <p class="eyebrow">Show network audit</p>
+        <h1>Know before places.</h1>
+        <p class="sub">Raster Tech Sheet checks every device on your show network against your tech sheet, and writes the proof back into it.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/beta/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+            Join the beta
+          </a>
+          <a class="btn btn-ghost" href="/pricing/">See pricing</a>
+        </div>
+        <p class="fine">Early beta &middot; Windows and Mac &middot; Free while in beta</p>
+      </div>
+    </div>
+
+    <section aria-labelledby="features-h">
+      <h2 id="features-h">Built around the sheet you already keep</h2>
+      <div class="features">
+        <article class="feature">
+          <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Tech sheet read into the Neon Tech Sheet app"><defs><radialGradient id="neon-spot-sheet-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#neon-spot-sheet-glow)"/><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M26 32H66L86 52V120a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V36a4 4 0 0 1 4-4Z" stroke="#b7bcc6"/><path d="M66 32V52H86" stroke="#b7bcc6"/><path d="M34 68H72M34 80H72M34 92H62M34 104H68" stroke="#333a47"/><path d="M98 76H134" stroke="#4a9eff" stroke-width="2"/><path d="M127 69l7 7-7 7" stroke="#4a9eff" stroke-width="2"/><rect x="152" y="54" width="52" height="36" rx="4" stroke="#b7bcc6"/><path d="M144 99H212" stroke="#b7bcc6"/></g></svg></div>
+          <div><h3>Starts from your tech sheet</h3><p>No new database to fill in. It reads the gear list, IPs and VLANs you already keep in Google Sheets.</p></div>
+        </article>
+        <article class="feature">
+          <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Three status icons: verified, partial and failed"><defs><radialGradient id="neon-spot-status-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#neon-spot-status-glow)"/><svg x="40" y="42" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2fb35c" stroke-width="0.90" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/></svg><path d="M42 100H78M48 112H72" stroke="#333a47" stroke-width="1.5" stroke-linecap="round"/><svg x="100" y="42" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e0b93d" stroke-width="0.90" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.2L2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4M12 16.8h.01"/></svg><path d="M102 100H138M108 112H132" stroke="#333a47" stroke-width="1.5" stroke-linecap="round"/><svg x="160" y="42" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e2504a" stroke-width="0.90" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><path d="M162 100H198M168 112H192" stroke="#333a47" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div><h3>Every device, verified</h3><p>Audit the whole show network, VLAN by VLAN. Each device is marked Verified, Partial or Failed, right in the sheet.</p></div>
+        </article>
+        <article class="feature">
+          <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Radar sweep watching the devices on the show network"><defs><radialGradient id="neon-spot-audit-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#neon-spot-audit-glow)"/><g transform="translate(60 15)" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="60" r="44" stroke="#333a47" stroke-width="1.5"/><circle cx="60" cy="60" r="28" stroke="#333a47" stroke-width="1.5"/><circle cx="60" cy="60" r="12" stroke="#333a47" stroke-width="1.5"/><g class="sweep"><path d="M60 16A44 44 0 0 1 91.1 28.9L60 60Z" fill="#4a9eff" fill-opacity=".16" stroke="none"/><path d="M60 60L91.1 28.9" stroke="#4a9eff" stroke-width="2"/></g><circle cx="84" cy="44" r="3.5" fill="#b7bcc6"/><circle cx="38" cy="78" r="3.5" fill="#b7bcc6"/><circle cx="74" cy="90" r="3.5" fill="#5b6270"/><circle cx="34" cy="40" r="3.5" fill="#5b6270"/></g></svg></div>
+          <div><h3>Keeps watching</h3><p>A live dashboard on the tech table and on your phone. It alerts you when a device drops, and marks the screen stale if it stops updating.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="how" aria-labelledby="how-h">
+      <h2 id="how-h">How it works</h2>
+      <ol class="steps">
+        <li><strong>Sign in with Google</strong>and pick your show sheet.</li>
+        <li><strong>Plug into the show network</strong>and run an audit.</li>
+        <li><strong>Read the results</strong>in your sheet, then leave the dashboard up for the show.</li>
+      </ol>
+    </section>
+
+    <section aria-label="Who built it">
+      <p class="credit">Built by <b>Kevin Downing</b>, video engineer on Sunset Blvd. and Purple Rain.</p>
+    </section>
+  </main>
+  <footer>
+    <p>Raster Tech Sheet is in early beta. Expect rough edges, and tell us what breaks. Questions: <a href="/support/">Support</a>. <a href="/privacy">Privacy Policy</a>.</p>
+    <p>Raster</p>
+  </footer>
+</body>
+</html>
