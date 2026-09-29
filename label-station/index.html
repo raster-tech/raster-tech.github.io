@@ -36,24 +36,7 @@ a:focus-visible, .btn:focus-visible, .navlinks a:focus-visible { outline: 2px so
 .wrap { max-width: var(--wrap); margin-inline: auto; }
 
 .top { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; padding-block: 20px; flex-wrap: wrap; }
-/* Header lockup, D-031 (extended to the website 2026-09-28): the full
-   production lockup svg -- mark + "ASTER" + "Tech Sheet" composited as
-   ONE asset (FULL_LOCKUP_SVG) -- never a hand-placed icon next to
-   separately-typed text (the exact pre-v3 spacing bug Kevin flagged live
-   on the site 2026-09-27) and never a plain-type fallback (Kevin
-   rejected that on the app side the same way, D-031).
 
-   The .lockup height below sizes the whole svg BOX (viewBox 748.95x104),
-   not the R mark's own ink -- the mark block occupies only the bottom 80
-   of those 104 units (24 units of margin above it), so the mark's actual
-   rendered height is box-height * 80/104. At 32px that's ~24.6px, at
-   Kevin's 24px floor. Fixed one narrow-screen height step down to 24px
-   here (2026-09-28, Dev Producer's review of the first push): that made
-   the BOX 24px, so the mark itself came out to ~18.5px -- under the
-   floor, the exact blur case this rule exists to prevent. Kept at a
-   single 32px box at every width instead: ~230px wide at 32px, which
-   fits a 375px screen with room for the 16px gutters either side, so
-   there's no narrow-width case that actually needs a smaller box. */
 .brand { display: flex; align-items: center; gap: 16px; text-decoration: none; }
 .lockup { display: block; height: 32px; }
 .lockup svg { display: block; height: 100%; width: auto; filter: drop-shadow(0 0 6px var(--accent-soft)); }
@@ -110,7 +93,7 @@ footer a { color: var(--ink-2); }
 @keyframes sweep { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .sweep { animation: none; } .btn { transition: none; } }
 
-/* -------- pricing -------- */
+
 .price-note { font-family: var(--body); color: var(--ink-2); max-width: 60em; margin: 0 0 30px; font-size: 16px; }
 .price-note b { color: var(--ink); }
 .pricing-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
@@ -124,14 +107,7 @@ footer a { color: var(--ink-2); }
 .founding { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; font-family: var(--body); color: var(--ink-2); font-size: 15px; margin: 20px 0 30px; }
 .founding b { color: var(--ink); }
 
-/* -------- pricing timeline + tier cards (layout D, 2026-09-28) --------
-   Kevin picked D at claude.ai/artifact/3sP3Jb7aQhyRUqidrdvXEy tab D: a
-   "what happens when" timeline first, then the price tiers underneath.
-   Structure only came from that mock -- these rules are rebuilt against
-   this site's own tokens (--accent/--surface/--line-2/etc, same as every
-   other component here), not copied from the mock's inline styles, and
-   the mock's own 2-tier Company/Shop cards don't apply -- this site's
-   real tiers are a 5-up pass/license set (see PRICING_TIERS). */
+
 .timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 0 0 40px; position: relative; }
 .timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 2px; background: var(--line-2); }
 .tl-step { position: relative; padding: 26px 14px 0 0; }
@@ -157,7 +133,7 @@ footer a { color: var(--ink-2); }
 .credit-line { background: var(--accent-soft); border: 1px solid var(--line-2); border-radius: var(--r); padding: 18px 20px; color: var(--ink-2); font-size: 15px; margin: 0 0 30px; }
 .credit-line b { color: var(--ink); }
 
-/* -------- FAQ (details/summary, works without JS) -------- */
+
 .faq { display: flex; flex-direction: column; gap: 10px; margin: 0 0 8px; }
 .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 4px 18px; }
 .faq summary { font: 700 17px var(--display); color: var(--ink); padding: 14px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
@@ -167,7 +143,7 @@ footer a { color: var(--ink-2); }
 .faq details p, .faq details ul { font-family: var(--body); color: var(--ink-2); font-size: 15.5px; margin: 0 0 16px; padding-left: 0; }
 .faq details ul { padding-left: 20px; }
 
-/* -------- beta page -------- */
+
 .reqs { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 22px; font-family: var(--body); font-size: 15.5px; color: var(--ink-2); margin: 0 0 30px; }
 .reqs b { color: var(--ink); }
 .platform-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0; }
@@ -193,11 +169,7 @@ footer a { color: var(--ink-2); }
   .beta-chip { display: none; }
   .btn { flex: 1 1 100%; justify-content: center; }
   .navlinks { gap: 14px; }
-  /* D-031: no narrow-screen step for .lockup -- see the comment on .top
-     above for why (the box height isn't the mark's own height; a smaller
-     box pushed the mark under the 24px floor). The lockup stays a
-     constant 32px box at every width; .top/.navwrap absorb narrow-width
-     pressure by wrapping the nav instead. */
+  
 }
 </style>
 </head>
@@ -247,7 +219,7 @@ footer a { color: var(--ink-2); }
 </svg>
     </figure>
     <section>
-<p><b>Label Station</b> prints device, cable and case labels straight from your show's tech sheet — no separate labeling software, and no retyping what's already in your gear index.</p>
+<p><b>Label Station</b> prints device, cable and case labels straight from your show's tech sheet — no separate labeling software, and no retyping what's already in your gear index. Built for shop prep — the few weeks before load-in, not the run itself. Most productions already expense a label printer and tape; this fits the same line item.</p>
 <p>It's in development. The first label type already works on a real show; the rest (cable and case labels) are being built next.</p>
 <p>Want to know when it's ready for other engineers to try? Email support@rastertech.app and we'll let you know — no signup, no list, just a note when it's ready.</p>
     </section>
