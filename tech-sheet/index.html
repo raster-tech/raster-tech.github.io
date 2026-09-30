@@ -30,6 +30,7 @@
 }
 * { box-sizing: border-box; }
 html { background: var(--ground); }
+html, body { overflow-x: clip; }
 body { margin: 0; background: var(--ground); color: var(--ink); font: 400 17px/1.6 var(--body); padding-inline: 20px; -webkit-font-smoothing: antialiased; }
 a { color: var(--brand-blue); }
 a:focus-visible, .btn:focus-visible, .navlinks a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
@@ -66,13 +67,21 @@ h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
 .board { position: relative; margin: 0 0 72px; }
 .board::before { content: ""; position: absolute; inset: -12% -8%; background: radial-gradient(closest-side, var(--brand-blue-soft), transparent); pointer-events: none; }
 .board.magenta::before { background: radial-gradient(closest-side, var(--brand-magenta-soft), transparent); }
-.board > img, .board > svg, .gallery-pair img { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
+.board > img, .board > svg, .gallery-pair img, .mac-pair img { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
 .board figcaption { position: relative; font: 400 12px/1.4 var(--mono); color: var(--muted); margin-top: 12px; }
 .gallery-item { margin: 0 0 56px; }
 .gallery-item h3 { margin-bottom: 12px; }
 .gallery-item .board { margin: 0; }
-.gallery-pair { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.gallery-pair { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; min-width: 0; }
+.gallery-pair img { min-width: 0; }
 @media (max-width: 720px) { .gallery-pair { grid-template-columns: 1fr; } }
+
+.board img.tray-shot, .mac-pair img.tray-shot { width: auto; max-width: 240px; }
+.gallery-item .board img.tray-shot { margin-inline: auto; }
+.mac-pair { position: relative; display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; min-width: 0; }
+.mac-pair .tray-shot { flex: 0 1 240px; min-width: 0; }
+.mac-pair .dash-shot { flex: 1 1 420px; min-width: 0; }
+@media (max-width: 720px) { .mac-pair { flex-direction: column; } .mac-pair .tray-shot { max-width: 200px; } }
 
 section.pagehead { padding-block: 44px 8px; }
 section { padding-block: 56px; border-top: 1px solid var(--line); }
@@ -222,7 +231,7 @@ footer a { color: var(--ink-2); }
       <div class="gallery-item">
         <h3>Lives in the tray</h3>
       <figure class="board">
-        <img src="/assets/screenshots/tech-sheet/01-tray.png" alt="The Tech Sheet tray panel showing live status counts and a Needs Attention list, without opening the full dashboard.">
+        <img class="tray-shot" src="/assets/screenshots/tech-sheet/01-tray.png" alt="The Tech Sheet tray panel showing live status counts and a Needs Attention list, without opening the full dashboard.">
         <figcaption>Lives in your system tray. One click to open the dashboard, no separate app to hunt for.</figcaption>
       </figure>
       </div>
@@ -282,6 +291,17 @@ footer a { color: var(--ink-2); }
           <div><h3>Keeps watching</h3><p>A live dashboard on the tech table and on your phone. It alerts you when a device drops, and marks the screen stale if it stops updating.</p></div>
         </article>
       </div>
+    </section>
+
+    <section aria-labelledby="mac-h">
+      <h2 id="mac-h">Also on Mac</h2>
+      <figure class="board">
+        <div class="mac-pair">
+          <img class="tray-shot" src="/assets/screenshots/tech-sheet/mac-tray.png" alt="The Tech Sheet tray icon and menu on macOS.">
+          <img class="dash-shot" src="/assets/screenshots/tech-sheet/mac-dashboard.png" alt="The Tech Sheet dashboard running on macOS, showing the same audit view as Windows.">
+        </div>
+        <figcaption>Windows, or Apple Silicon Macs running macOS 14 Sonoma or later — the same dashboard either way.</figcaption>
+      </figure>
     </section>
 
     <section id="how" aria-labelledby="how-h">
