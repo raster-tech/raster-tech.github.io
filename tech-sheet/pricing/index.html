@@ -66,8 +66,13 @@ h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
 .board { position: relative; margin: 0 0 72px; }
 .board::before { content: ""; position: absolute; inset: -12% -8%; background: radial-gradient(closest-side, var(--brand-blue-soft), transparent); pointer-events: none; }
 .board.magenta::before { background: radial-gradient(closest-side, var(--brand-magenta-soft), transparent); }
-.board > img, .board > svg { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
+.board > img, .board > svg, .gallery-pair img { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
 .board figcaption { position: relative; font: 400 12px/1.4 var(--mono); color: var(--muted); margin-top: 12px; }
+.gallery-item { margin: 0 0 56px; }
+.gallery-item h3 { margin-bottom: 12px; }
+.gallery-item .board { margin: 0; }
+.gallery-pair { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 720px) { .gallery-pair { grid-template-columns: 1fr; } }
 
 section.pagehead { padding-block: 44px 8px; }
 section { padding-block: 56px; border-top: 1px solid var(--line); }

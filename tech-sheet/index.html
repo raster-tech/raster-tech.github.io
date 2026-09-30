@@ -66,8 +66,13 @@ h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
 .board { position: relative; margin: 0 0 72px; }
 .board::before { content: ""; position: absolute; inset: -12% -8%; background: radial-gradient(closest-side, var(--brand-blue-soft), transparent); pointer-events: none; }
 .board.magenta::before { background: radial-gradient(closest-side, var(--brand-magenta-soft), transparent); }
-.board > img, .board > svg { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
+.board > img, .board > svg, .gallery-pair img { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
 .board figcaption { position: relative; font: 400 12px/1.4 var(--mono); color: var(--muted); margin-top: 12px; }
+.gallery-item { margin: 0 0 56px; }
+.gallery-item h3 { margin-bottom: 12px; }
+.gallery-item .board { margin: 0; }
+.gallery-pair { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 720px) { .gallery-pair { grid-template-columns: 1fr; } }
 
 section.pagehead { padding-block: 44px 8px; }
 section { padding-block: 56px; border-top: 1px solid var(--line); }
@@ -192,7 +197,7 @@ footer a { color: var(--ink-2); }
     </div>
   </header>
   <main id="top">
-    <div class="hero text-only">
+    <div class="hero">
       <div>
         <p class="eyebrow">Show network audit</p>
         <h1>Know before places.</h1>
@@ -204,9 +209,62 @@ footer a { color: var(--ink-2); }
           </a>
           <a class="btn btn-ghost" href="/tech-sheet/pricing/">See pricing</a>
         </div>
-        <p class="fine">Early beta &middot; Windows and Mac &middot; Free while in beta</p>
+        <p class="fine">Early beta · Windows and Apple Silicon Mac · Free while in beta</p>
       </div>
     </div>
+    <figure class="board">
+      <img src="/assets/screenshots/tech-sheet/02-dashboard-hero.png" alt="The Tech Sheet dashboard showing a demo show&rsquo;s audit results: devices marked Verified, Partial or Failed, none unchecked.">
+      <figcaption>Sample data · Tech Sheet v0.1.13 dashboard</figcaption>
+    </figure>
+
+    <section aria-labelledby="action-h">
+      <h2 id="action-h">See it in action</h2>
+      <div class="gallery-item">
+        <h3>Lives in the tray</h3>
+      <figure class="board">
+        <img src="/assets/screenshots/tech-sheet/01-tray.png" alt="The Tech Sheet tray panel showing live status counts and a Needs Attention list, without opening the full dashboard.">
+        <figcaption>Lives in your system tray. One click to open the dashboard, no separate app to hunt for.</figcaption>
+      </figure>
+      </div>
+      <div class="gallery-item">
+        <h3>Every device, checked</h3>
+      <figure class="board">
+        <img src="/assets/screenshots/tech-sheet/03-dashboard-scanning.png" alt="The Tech Sheet dashboard mid-scan, devices grouped by equipment type and colour-coded Verified, Partial or Failed.">
+        <figcaption>The same dashboard, live — on the laptop running it, or read-only from any phone&rsquo;s browser on the show network, no app to install.</figcaption>
+      </figure>
+      </div>
+      <div class="gallery-item">
+        <h3>The full picture</h3>
+      <figure class="board">
+        <img src="/assets/screenshots/tech-sheet/04-device-detail.png" alt="A device group expanded to show each device&rsquo;s location, network status and verification state.">
+        <figcaption>Tap any device for the full picture: what it should be, what it actually is, and when it last checked in.</figcaption>
+      </figure>
+      </div>
+      <div class="gallery-item">
+        <h3>Hand off in seconds</h3>
+      <figure class="board">
+        <div class="gallery-pair">
+          <img src="/assets/screenshots/tech-sheet/06-sub-packet-cover.png" alt="A printed Sub Packet cover sheet with who-to-call and show-up times.">
+          <img src="/assets/screenshots/tech-sheet/07-sub-packet-inside.png" alt="A Sub Packet page listing every VLAN and every machine on the show network.">
+        </div>
+        <figcaption>Prints a Sub Packet straight from the audit — a cover sheet and the device-by-device detail, ready to hand out.</figcaption>
+      </figure>
+      </div>
+      <div class="gallery-item">
+        <h3>Sliced the way you walk the room</h3>
+      <figure class="board">
+        <img src="/assets/screenshots/tech-sheet/05-dashboard-location.png" alt="The Tech Sheet dashboard grouped by physical location: Rack, Stage, FOH, Balcony.">
+        <figcaption>Group by location, type or section: the same checks, sliced the way you walk the room.</figcaption>
+      </figure>
+      </div>
+      <div class="gallery-item">
+        <h3>Point it once</h3>
+      <figure class="board">
+        <img src="/assets/screenshots/tech-sheet/08-settings.png" alt="The Tech Sheet settings panel, opened over the dashboard.">
+        <figcaption>Point it at your show sheet once. It remembers.</figcaption>
+      </figure>
+      </div>
+    </section>
 
     <section aria-labelledby="features-h">
       <h2 id="features-h">Built around the sheet you already keep</h2>

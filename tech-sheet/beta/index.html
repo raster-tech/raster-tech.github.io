@@ -66,8 +66,13 @@ h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
 .board { position: relative; margin: 0 0 72px; }
 .board::before { content: ""; position: absolute; inset: -12% -8%; background: radial-gradient(closest-side, var(--brand-blue-soft), transparent); pointer-events: none; }
 .board.magenta::before { background: radial-gradient(closest-side, var(--brand-magenta-soft), transparent); }
-.board > img, .board > svg { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
+.board > img, .board > svg, .gallery-pair img { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
 .board figcaption { position: relative; font: 400 12px/1.4 var(--mono); color: var(--muted); margin-top: 12px; }
+.gallery-item { margin: 0 0 56px; }
+.gallery-item h3 { margin-bottom: 12px; }
+.gallery-item .board { margin: 0; }
+.gallery-pair { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 720px) { .gallery-pair { grid-template-columns: 1fr; } }
 
 section.pagehead { padding-block: 44px 8px; }
 section { padding-block: 56px; border-top: 1px solid var(--line); }
@@ -195,15 +200,15 @@ footer a { color: var(--ink-2); }
     <section class="pagehead">
       <p class="eyebrow">Beta</p>
       <h1 style="font-size:clamp(40px,6vw,64px)">Join the beta</h1>
-      <p class="sub">Raster Tech Sheet is a new tool, tested on real shows. It's free while it's in beta. Expect rough edges, and tell us what breaks.</p>
+      <p class="sub">Raster Tech Sheet is a new tool, tested on real shows. It&rsquo;s free while it&rsquo;s in beta. Expect rough edges, and tell us what breaks.</p>
     </section>
     <section>
-      <div class="reqs"><b>What you need:</b> a Windows 10 or 11 (64-bit) laptop, or an <b>Apple Silicon Mac</b> (Intel Macs can't run this build), that can plug into your show network, and a Google account that can open your show's tech sheet.</div>
+      <div class="reqs"><b>What you need:</b> a Windows 10 or 11 (64-bit) laptop, or an <b>Apple Silicon Mac running macOS 14 Sonoma or later</b> (Intel Macs and macOS 13 or older can&rsquo;t run this build), that can plug into your show network, and a Google account that can open your show&rsquo;s tech sheet.</div>
       <h2 id="get-started-h">Get started</h2>
       <ol class="steps">
         <li><strong>Download</strong>the latest build from the <a href="https://github.com/neon-tech-dev/tech-sheet-releases/releases/latest">release page</a>.</li>
-        <li><strong>Install it.</strong> Windows and macOS will warn you the first time (unsigned builds) &mdash; the beta guide shows how to get past it.</li>
-        <li><strong>Sign in and run an audit</strong>on your show network, from your Raster Tech Sheet template.</li>
+        <li><strong>Install it.</strong> The builds aren&rsquo;t code-signed yet, so Windows and macOS will warn you the first time — the <a href="https://github.com/neon-tech-dev/tech-sheet-releases/releases/latest">beta guide</a> shows how to get past it.</li>
+        <li><strong>Sign in and run an audit.</strong> Sign in with the Google account that can open your show&rsquo;s tech sheet (made from the Raster Tech Sheet template), plug into the show network, and run your first audit.</li>
       </ol>
       <div class="platform-actions">
         <a class="btn btn-primary" href="https://github.com/neon-tech-dev/tech-sheet-releases/releases/latest">
@@ -215,13 +220,13 @@ footer a { color: var(--ink-2); }
           Download for Mac
         </a>
       </div>
-      <p class="price-note">The full walkthrough, with the Windows and Mac steps in order, is in the beta guide.</p>
+      <p class="price-note">The full walkthrough, with the Windows and Mac steps in order, is in the <a href="https://github.com/neon-tech-dev/tech-sheet-releases/releases/latest">beta guide</a> — it ships attached to each release.</p>
     </section>
     <section aria-labelledby="wbm-h">
       <h2 id="wbm-h">What beta means</h2>
       <div class="faq">
         <details><summary>No metrics, no survey</summary><p>We just want to know what breaks and what saves you time.</p></details>
-        <details><summary>It's free for as long as you're testing</summary><p>Friends testing now keep it free for good, once paid plans start.</p></details>
+        <details><summary>It&rsquo;s free for as long as you&rsquo;re testing</summary><p>Friends testing now keep it free for good, once paid plans start.</p></details>
         <details><summary>Updates come often</summary><p>Use Check for Updates in the app, or come back here.</p></details>
       </div>
     </section>
