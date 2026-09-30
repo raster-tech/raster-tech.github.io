@@ -81,7 +81,8 @@ h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
 .mac-pair { position: relative; display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; min-width: 0; }
 .mac-pair .tray-shot { flex: 0 1 240px; min-width: 0; }
 .mac-pair .dash-shot { flex: 1 1 420px; min-width: 0; }
-@media (max-width: 720px) { .mac-pair { flex-direction: column; } .mac-pair .tray-shot { max-width: 200px; } }
+
+@media (max-width: 720px) { .mac-pair { flex-direction: column; } .mac-pair .tray-shot { max-width: 200px; } .mac-pair .dash-shot { flex: none; } }
 
 section.pagehead { padding-block: 44px 8px; }
 section { padding-block: 56px; border-top: 1px solid var(--line); }
