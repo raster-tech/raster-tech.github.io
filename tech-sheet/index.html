@@ -87,6 +87,7 @@ h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
 section.pagehead { padding-block: 44px 8px; }
 section { padding-block: 56px; border-top: 1px solid var(--line); }
 .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.features.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .feature { display: flex; flex-direction: column; gap: 18px; }
 .feature .art { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); aspect-ratio: 8 / 5; max-width: 100%; display: grid; place-items: center; overflow: hidden; }
 .feature .art > svg { width: 100%; height: auto; display: block; }
@@ -169,7 +170,7 @@ footer a { color: var(--ink-2); }
 
 @media (max-width: 880px) {
   .hero { grid-template-columns: 1fr; gap: 40px; padding-block: 24px 56px; }
-  .features, .steps { grid-template-columns: 1fr; }
+  .features, .features.four, .steps { grid-template-columns: 1fr; }
   .feature .art { max-width: 420px; }
   .pricing-table { font-size: 14px; }
   .pricing-table td:first-child, .pricing-table th:first-child { width: 140px; }
@@ -278,7 +279,7 @@ footer a { color: var(--ink-2); }
 
     <section aria-labelledby="features-h">
       <h2 id="features-h">Built around the sheet you already keep</h2>
-      <div class="features">
+      <div class="features four">
         <article class="feature">
           <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Tech sheet read into the Neon Tech Sheet app"><defs><radialGradient id="neon-spot-sheet-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#neon-spot-sheet-glow)"/><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M26 32H66L86 52V120a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V36a4 4 0 0 1 4-4Z" stroke="#b7bcc6"/><path d="M66 32V52H86" stroke="#b7bcc6"/><path d="M34 68H72M34 80H72M34 92H62M34 104H68" stroke="#333a47"/><path d="M98 76H134" stroke="#4a9eff" stroke-width="2"/><path d="M127 69l7 7-7 7" stroke="#4a9eff" stroke-width="2"/><rect x="152" y="54" width="52" height="36" rx="4" stroke="#b7bcc6"/><path d="M144 99H212" stroke="#b7bcc6"/></g></svg></div>
           <div><h3>Starts from your tech sheet</h3><p>No new database to fill in. It reads the gear list, IPs and VLANs you already keep in Google Sheets.</p></div>
@@ -290,6 +291,10 @@ footer a { color: var(--ink-2); }
         <article class="feature">
           <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Radar sweep watching the devices on the show network"><defs><radialGradient id="neon-spot-audit-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#neon-spot-audit-glow)"/><g transform="translate(60 15)" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="60" r="44" stroke="#333a47" stroke-width="1.5"/><circle cx="60" cy="60" r="28" stroke="#333a47" stroke-width="1.5"/><circle cx="60" cy="60" r="12" stroke="#333a47" stroke-width="1.5"/><g class="sweep"><path d="M60 16A44 44 0 0 1 91.1 28.9L60 60Z" fill="#4a9eff" fill-opacity=".16" stroke="none"/><path d="M60 60L91.1 28.9" stroke="#4a9eff" stroke-width="2"/></g><circle cx="84" cy="44" r="3.5" fill="#b7bcc6"/><circle cx="38" cy="78" r="3.5" fill="#b7bcc6"/><circle cx="74" cy="90" r="3.5" fill="#5b6270"/><circle cx="34" cy="40" r="3.5" fill="#5b6270"/></g></svg></div>
           <div><h3>Keeps watching</h3><p>A live dashboard on the tech table and on your phone. It alerts you when a device drops, and marks the screen stale if it stops updating.</p></div>
+        </article>
+        <article class="feature">
+          <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="A show machine's screen opened on your own laptop over the network"><defs><radialGradient id="neon-spot-remote-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#neon-spot-remote-glow)"/><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><rect x="22" y="38" width="64" height="44" rx="4" stroke="#b7bcc6"/><path d="M54 82v16M42 98H66" stroke="#b7bcc6"/><path d="M32 52H62M32 62H74M32 72H54" stroke="#333a47"/><path d="M98 68H134" stroke="#4a9eff" stroke-width="2" stroke-dasharray="4 5"/><path d="M127 61l7 7-7 7" stroke="#4a9eff" stroke-width="2"/><rect x="152" y="38" width="60" height="44" rx="4" stroke="#b7bcc6"/><path d="M144 98H220" stroke="#b7bcc6"/><path d="M161 52H189M161 62H200M161 72H181" stroke="#333a47"/></g></svg></div>
+          <div><h3>Watch from anywhere</h3><p>Open any device&rsquo;s screen right from the dashboard — on the show network, or from home over your own private network. No separate VNC app to configure.</p></div>
         </article>
       </div>
     </section>

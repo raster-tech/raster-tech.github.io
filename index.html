@@ -87,6 +87,7 @@ h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
 section.pagehead { padding-block: 44px 8px; }
 section { padding-block: 56px; border-top: 1px solid var(--line); }
 .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.features.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .feature { display: flex; flex-direction: column; gap: 18px; }
 .feature .art { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); aspect-ratio: 8 / 5; max-width: 100%; display: grid; place-items: center; overflow: hidden; }
 .feature .art > svg { width: 100%; height: auto; display: block; }
@@ -169,7 +170,7 @@ footer a { color: var(--ink-2); }
 
 @media (max-width: 880px) {
   .hero { grid-template-columns: 1fr; gap: 40px; padding-block: 24px 56px; }
-  .features, .steps { grid-template-columns: 1fr; }
+  .features, .features.four, .steps { grid-template-columns: 1fr; }
   .feature .art { max-width: 420px; }
   .pricing-table { font-size: 14px; }
   .pricing-table td:first-child, .pricing-table th:first-child { width: 140px; }
