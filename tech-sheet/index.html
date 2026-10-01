@@ -36,17 +36,23 @@ a { color: var(--brand-blue); }
 a:focus-visible, .btn:focus-visible, .navlinks a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 .wrap { max-width: var(--wrap); margin-inline: auto; }
 
-.top { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; padding-block: 20px; flex-wrap: wrap; }
+body > header, body > nav.subnav, body > main, body > footer { max-width: var(--wrap); margin-inline: auto; }
+main p, main li { max-width: 62ch; }   
 
-.brand { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+
+.brand { display: flex; align-items: center; gap: 16px; min-height: 44px; text-decoration: none; }
 .lockup { display: block; height: 32px; }
 .lockup svg { display: block; height: 100%; width: auto; filter: drop-shadow(0 0 6px var(--accent-soft)); }
 .navwrap { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .navlinks { display: flex; gap: 22px; }
-.navlinks a { color: var(--ink-2); text-decoration: none; font: 600 15px var(--display); letter-spacing: .01em; }
-.navlinks a[aria-current="page"] { color: var(--ink); }
-.navlinks a:hover { color: var(--ink); }
-.beta-chip { font: 500 12px/1 var(--mono); color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 5px 7px; letter-spacing: .04em; }
+.navlinks a, .subnav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-2); text-decoration: none; font: 600 16px var(--display); letter-spacing: .01em; }
+.navlinks a[aria-current], .subnav a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--ink-2); }
+.navlinks a:hover, .subnav a:hover { color: var(--ink); }
+
+.subnav { display: flex; align-items: center; gap: 4px 22px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+.subnav .beta-chip { margin-left: auto; }
+.beta-chip { font: 500 13px/1 var(--mono); color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 5px 7px; letter-spacing: .04em; }
 
 .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 8px; font: 700 18px/1 var(--display); letter-spacing: .02em; text-decoration: none; transition: background-color .15s ease; }
 .btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 0 24px var(--accent-soft); }
@@ -57,18 +63,23 @@ a:focus-visible, .btn:focus-visible, .navlinks a:focus-visible { outline: 2px so
 
 .hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: center; padding-block: 48px 48px; }
 .hero.text-only { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
-.eyebrow { font: 500 13px/1.4 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin: 0 0 16px; }
-h1 { font: 800 clamp(48px, 7vw, 88px)/.95 var(--display); text-transform: uppercase; letter-spacing: -.005em; margin: 0; color: var(--ink); text-wrap: balance; }
+.eyebrow { font: 500 14px/1.4 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
+.eyebrow img { width: 22px; height: 22px; flex: none; margin-block: -2px; }
+
+h1 { font: 800 clamp(44px, 6vw, 72px)/.95 var(--display); text-transform: uppercase; letter-spacing: -.005em; margin: 0; color: var(--ink); text-wrap: balance; }
 h2 { font: 700 clamp(30px, 3.6vw, 40px)/1.05 var(--display); text-transform: uppercase; margin: 0 0 30px; text-wrap: balance; }
 h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
 .sub { font-size: 19px; color: var(--ink-2); max-width: 34em; margin: 22px 0 30px; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.fine { font: 400 13px/1.5 var(--mono); color: var(--muted); margin: 18px 0 0; }
+.fine { font: 400 14px/1.5 var(--mono); color: var(--muted); margin: 18px 0 0; }
 .board { position: relative; margin: 0 0 72px; }
 .board::before { content: ""; position: absolute; inset: -12% -8%; background: radial-gradient(closest-side, var(--brand-blue-soft), transparent); pointer-events: none; }
 .board.magenta::before { background: radial-gradient(closest-side, var(--brand-magenta-soft), transparent); }
 .board > img, .board > svg, .gallery-pair img, .mac-pair img { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
-.board figcaption { position: relative; font: 400 12px/1.4 var(--mono); color: var(--muted); margin-top: 12px; }
+.board figcaption { position: relative; font: 400 14px/1.5 var(--mono); color: var(--muted); margin-top: 12px; max-width: 62ch; }
+
+.board > img { max-width: 960px; }
+.gallery-item .board > img { max-width: 800px; }
 .gallery-item { margin: 0 0 56px; }
 .gallery-item h3 { margin-bottom: 12px; }
 .gallery-item .board { margin: 0; }
@@ -84,9 +95,12 @@ h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
 
 @media (max-width: 720px) { .mac-pair { flex-direction: column; } .mac-pair .tray-shot { max-width: 200px; } .mac-pair .dash-shot { flex: none; } }
 
-section.pagehead { padding-block: 44px 8px; }
+
+section.pagehead { padding-block: 48px 8px; border-top: 0; }
+.figure-section .board { margin: 0; }
 section { padding-block: 56px; border-top: 1px solid var(--line); }
 .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.features.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .feature { display: flex; flex-direction: column; gap: 18px; }
 .feature .art { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); aspect-ratio: 8 / 5; max-width: 100%; display: grid; place-items: center; overflow: hidden; }
 .feature .art > svg { width: 100%; height: auto; display: block; }
@@ -94,7 +108,7 @@ section { padding-block: 56px; border-top: 1px solid var(--line); }
 
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
 .steps li { counter-increment: step; padding-top: 20px; border-top: 2px solid var(--line-2); color: var(--ink-2); font-size: 16px; }
-.steps li::before { content: counter(step, decimal-leading-zero); display: block; font: 500 13px/1 var(--mono); color: var(--brand-blue); margin-bottom: 14px; letter-spacing: .06em; }
+.steps li::before { content: counter(step, decimal-leading-zero); display: block; font: 500 14px/1 var(--mono); color: var(--brand-blue); margin-bottom: 14px; letter-spacing: .06em; }
 .steps strong { display: block; font: 700 22px/1.15 var(--display); color: var(--ink); margin-bottom: 6px; }
 
 .credit { font: 600 clamp(22px, 2.6vw, 30px)/1.3 var(--display); color: var(--ink-2); max-width: 30em; margin: 0; text-wrap: balance; }
@@ -109,17 +123,17 @@ footer a { color: var(--ink-2); }
 @media (prefers-reduced-motion: reduce) { .sweep { animation: none; } .btn { transition: none; } }
 
 
-.price-note { font-family: var(--body); color: var(--ink-2); max-width: 60em; margin: 0 0 30px; font-size: 16px; }
+.price-note { font-family: var(--body); color: var(--ink-2); max-width: 62ch; margin: 0 0 30px; font-size: 16px; }
 .price-note b { color: var(--ink); }
 .pricing-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-.pricing-table th, .pricing-table td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 15.5px; }
+.pricing-table th, .pricing-table td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 16px; }
 .pricing-table th { font: 700 15px var(--display); text-transform: uppercase; letter-spacing: .03em; color: var(--ink); background: var(--surface); }
-.pricing-table td:first-child, .pricing-table th:first-child { color: var(--muted); font: 500 13px var(--mono); width: 220px; }
+.pricing-table td:first-child, .pricing-table th:first-child { color: var(--muted); font: 500 14px var(--mono); width: 220px; }
 .pricing-table td { color: var(--ink-2); }
 .pricing-table .price { font: 800 22px var(--display); color: var(--ink); }
-.includes { font-family: var(--body); color: var(--ink-2); font-size: 15.5px; margin: 20px 0; padding-left: 20px; }
+.includes { font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 20px 0; padding-left: 20px; }
 .includes li { margin-bottom: 6px; }
-.founding { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; font-family: var(--body); color: var(--ink-2); font-size: 15px; margin: 20px 0 30px; }
+.founding { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 20px 0 30px; }
 .founding b { color: var(--ink); }
 
 
@@ -128,24 +142,24 @@ footer a { color: var(--ink-2); }
 .tl-step { position: relative; padding: 26px 14px 0 0; }
 .tl-step::before { content: ""; position: absolute; left: 0; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--ground); border: 2px solid var(--line-2); }
 .tl-step.now::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 16px var(--accent-soft); }
-.tl-step .k { font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.tl-step .k { font: 500 13px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .tl-step.now .k { color: var(--accent); }
 .tl-step .h { font: 700 20px/1.1 var(--display); margin: 6px 0 4px; color: var(--ink); }
-.tl-step p { margin: 0; color: var(--ink-2); font-size: 14.5px; }
+.tl-step p { margin: 0; color: var(--ink-2); font-size: 16px; }
 
 .tier-group { margin: 0 0 28px; }
-.tier-group .group-label { font: 700 13px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+.tier-group .group-label { font: 700 14px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
 .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 0 0 12px; }
 .tier-card { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--surface); padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; }
 .tier-card.hi { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-soft), 0 0 30px var(--accent-soft); }
 .tier-card .who { font: 700 20px/1.1 var(--display); color: var(--ink); }
 .tier-card .p { font: 800 36px/1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; }
-.tier-card .p small { font: 500 13px var(--mono); color: var(--muted); margin-left: 5px; letter-spacing: .02em; }
-.tier-card .desc { color: var(--ink-2); font-size: 14.5px; margin: 0; }
-.tier-card .soon { display: inline-block; align-self: flex-start; font: 500 11px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 3px 6px; margin-top: 2px; }
-.pricing-fine { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 20px; color: var(--ink-2); font-size: 14.5px; margin: 0 0 20px; }
+.tier-card .p small { font: 500 14px var(--mono); color: var(--muted); margin-left: 5px; letter-spacing: .02em; }
+.tier-card .desc { color: var(--ink-2); font-size: 16px; margin: 0; }
+.tier-card .soon { display: inline-block; align-self: flex-start; font: 500 13px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 3px 6px; margin-top: 2px; }
+.pricing-fine { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 20px; color: var(--ink-2); font-size: 16px; margin: 0 0 20px; }
 .pricing-fine b { color: var(--ink); }
-.credit-line { background: var(--accent-soft); border: 1px solid var(--line-2); border-radius: var(--r); padding: 18px 20px; color: var(--ink-2); font-size: 15px; margin: 0 0 30px; }
+.credit-line { background: var(--accent-soft); border: 1px solid var(--line-2); border-radius: var(--r); padding: 18px 20px; color: var(--ink-2); font-size: 16px; margin: 0 0 30px; }
 .credit-line b { color: var(--ink); }
 
 
@@ -155,11 +169,11 @@ footer a { color: var(--ink-2); }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after { content: "+"; font-size: 22px; color: var(--muted); font-weight: 400; flex: none; }
 .faq details[open] summary::after { content: "\2212"; }
-.faq details p, .faq details ul { font-family: var(--body); color: var(--ink-2); font-size: 15.5px; margin: 0 0 16px; padding-left: 0; }
+.faq details p, .faq details ul { font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 0 0 16px; padding-left: 0; }
 .faq details ul { padding-left: 20px; }
 
 
-.reqs { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 22px; font-family: var(--body); font-size: 15.5px; color: var(--ink-2); margin: 0 0 30px; }
+.reqs { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 22px; font-family: var(--body); font-size: 16px; color: var(--ink-2); margin: 0 0 30px; }
 .reqs b { color: var(--ink); }
 .platform-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0; }
 .support-intro { font-family: var(--body); color: var(--ink-2); font-size: 16px; max-width: 68em; margin-bottom: 8px; }
@@ -169,7 +183,8 @@ footer a { color: var(--ink-2); }
 
 @media (max-width: 880px) {
   .hero { grid-template-columns: 1fr; gap: 40px; padding-block: 24px 56px; }
-  .features, .steps { grid-template-columns: 1fr; }
+  section.pagehead { padding-block: 24px 8px; }
+  .features, .features.four, .steps { grid-template-columns: 1fr; }
   .feature .art { max-width: 420px; }
   .pricing-table { font-size: 14px; }
   .pricing-table td:first-child, .pricing-table th:first-child { width: 140px; }
@@ -201,11 +216,9 @@ footer a { color: var(--ink-2); }
 <path d="M392.95090285714286 33.60201142857143V41.11341714285714Q392.95090285714286 41.60758857142857 392.6049828571429 41.95350857142857Q392.2590628571429 42.29942857142857 391.76489142857145 42.29942857142857H379.2129371428572Q378.7187657142857 42.29942857142857 378.7187657142857 42.7936V100.41398857142856Q378.7187657142857 100.90816 378.37284571428575 101.25407999999999Q378.02692571428577 101.6 377.5327542857143 101.6H368.44000000000005Q367.9458285714286 101.6 367.5999085714286 101.25407999999999Q367.2539885714286 100.90816 367.2539885714286 100.41398857142856V42.7936Q367.2539885714286 42.29942857142857 366.7598171428572 42.29942857142857H354.89970285714287Q354.40553142857146 42.29942857142857 354.05961142857143 41.95350857142857Q353.71369142857145 41.60758857142857 353.71369142857145 41.11341714285714V33.60201142857143Q353.71369142857145 33.107839999999996 354.05961142857143 32.761919999999996Q354.40553142857146 32.416 354.89970285714287 32.416H391.76489142857145Q392.2590628571429 32.416 392.6049828571429 32.761919999999996Q392.95090285714286 33.107839999999996 392.95090285714286 33.60201142857143ZM433.1764571428572 80.54829714285714H411.33408000000003Q410.8399085714286 80.54829714285714 410.8399085714286 81.04246857142857V85.49001142857142Q410.8399085714286 88.55387428571429 412.5200914285715 90.53056000000001Q414.20027428571433 92.50724571428572 416.8688 92.50724571428572Q419.1419885714286 92.50724571428572 420.7727542857143 91.07414857142857Q422.40352 89.64105142857142 422.8976914285715 87.36786285714285Q423.19419428571433 86.37952 424.1825371428572 86.37952L432.9787885714286 86.77485714285714Q433.47296000000006 86.77485714285714 433.81888000000004 87.12077714285715Q434.1648 87.46669714285714 434.06596571428577 88.05970285714285Q433.37412571428575 94.97810285714286 429.0254171428572 98.68438857142857Q424.6767085714286 102.39067428571428 416.8688 102.39067428571428Q408.76438857142864 102.39067428571428 404.0697600000001 98.09138285714286Q399.3751314285715 93.79209142857142 399.3751314285715 86.37952V66.31616Q399.3751314285715 59.10125714285714 404.0697600000001 54.703131428571425Q408.76438857142864 50.30500571428571 416.8688 50.30500571428571Q424.97321142857146 50.30500571428571 429.66784000000007 54.703131428571425Q434.3624685714286 59.10125714285714 434.3624685714286 66.31616V79.36228571428572Q434.3624685714286 79.85645714285714 434.01654857142864 80.20237714285713Q433.6706285714286 80.54829714285714 433.1764571428572 80.54829714285714ZM410.8399085714286 67.20566857142856V71.65321142857142Q410.8399085714286 72.14738285714286 411.33408000000003 72.14738285714286H422.5023542857143Q422.9965257142858 72.14738285714286 422.9965257142858 71.65321142857142V67.20566857142856Q422.9965257142858 64.04297142857143 421.3163428571429 62.11570285714286Q419.63616 60.18843428571428 416.8688 60.18843428571428Q414.20027428571433 60.18843428571428 412.5200914285715 62.165119999999995Q410.8399085714286 64.14180571428571 410.8399085714286 67.20566857142856ZM441.47853714285714 86.28068571428571V66.31616Q441.47853714285714 59.10125714285714 446.1731657142857 54.703131428571425Q450.8677942857143 50.30500571428571 458.9722057142857 50.30500571428571Q467.0766171428571 50.30500571428571 471.82066285714285 54.60429714285714Q476.5647085714286 58.90358857142857 476.5647085714286 65.52548571428571V66.9091657142857Q476.5647085714286 67.40333714285714 476.2187885714286 67.74925714285715Q475.87286857142857 68.09517714285714 475.3786971428571 68.09517714285714L466.28594285714286 68.49051428571428Q465.09993142857144 68.49051428571428 465.09993142857144 67.30450285714285V66.31616Q465.09993142857144 63.845302857142855 463.37033142857143 62.01686857142857Q461.6407314285714 60.18843428571428 458.9722057142857 60.18843428571428Q456.30368 60.18843428571428 454.6234971428571 62.165119999999995Q452.9433142857143 64.14180571428571 452.9433142857143 67.20566857142856V85.49001142857142Q452.9433142857143 88.55387428571429 454.6234971428571 90.53056000000001Q456.30368 92.50724571428572 458.9722057142857 92.50724571428572Q461.6407314285714 92.50724571428572 463.37033142857143 90.67881142857144Q465.09993142857144 88.85037714285714 465.09993142857144 86.28068571428571V85.29234285714286Q465.09993142857144 84.79817142857142 465.4458514285714 84.45225142857143Q465.7917714285714 84.10633142857142 466.28594285714286 84.10633142857142L475.3786971428571 84.20516571428571Q475.87286857142857 84.20516571428571 476.2187885714286 84.5510857142857Q476.5647085714286 84.89700571428571 476.5647085714286 85.39117714285715V87.17019428571427Q476.5647085714286 93.98975999999999 471.82066285714285 98.19021714285714Q467.0766171428571 102.39067428571428 458.9722057142857 102.39067428571428Q450.8677942857143 102.39067428571428 446.1731657142857 98.04196571428571Q441.47853714285714 93.69325714285714 441.47853714285714 86.28068571428571ZM518.6681142857143 66.81033142857143V100.41398857142856Q518.6681142857143 100.90816 518.3221942857143 101.25407999999999Q517.9762742857143 101.6 517.4821028571429 101.6H508.38934857142857Q507.89517714285716 101.6 507.5492571428572 101.25407999999999Q507.20333714285715 100.90816 507.20333714285715 100.41398857142856V67.69984Q507.20333714285715 64.14180571428571 505.7208228571429 62.165119999999995Q504.2383085714286 60.18843428571428 501.4709485714286 60.18843428571428Q498.6047542857143 60.18843428571428 497.02340571428573 62.263954285714284Q495.44205714285715 64.33947428571429 495.44205714285715 67.99634285714285V100.41398857142856Q495.44205714285715 100.90816 495.0961371428572 101.25407999999999Q494.7502171428572 101.6 494.25604571428573 101.6H485.1632914285714Q484.66912 101.6 484.32320000000004 101.25407999999999Q483.97728 100.90816 483.97728 100.41398857142856V33.60201142857143Q483.97728 33.107839999999996 484.32320000000004 32.761919999999996Q484.66912 32.416 485.1632914285714 32.416H494.25604571428573Q494.7502171428572 32.416 495.0961371428572 32.761919999999996Q495.44205714285715 33.107839999999996 495.44205714285715 33.60201142857143V54.25837714285714Q495.44205714285715 54.55488 495.6891428571429 54.604297142857135Q495.9362285714286 54.65371428571428 496.23273142857147 54.25837714285714Q499.5930971428572 50.30500571428571 505.6219885714286 50.30500571428571Q512.0462171428571 50.30500571428571 515.3571657142857 54.60429714285714Q518.6681142857143 58.90358857142857 518.6681142857143 66.81033142857143ZM545.9463771428573 84.50166857142857V81.93197714285714Q545.9463771428573 81.4378057142857 546.2922971428573 81.09188571428571Q546.6382171428572 80.74596571428572 547.1323885714287 80.74596571428572H556.1263085714287Q556.62048 80.74596571428572 556.9664 81.09188571428571Q557.3123200000001 81.4378057142857 557.3123200000001 81.93197714285714V83.90866285714286Q557.3123200000001 87.7632 559.2395885714286 90.13522285714285Q561.1668571428572 92.50724571428572 564.2307200000001 92.50724571428572Q567.2945828571429 92.50724571428572 569.2712685714287 90.28347428571428Q571.2479542857144 88.05970285714285 571.2479542857144 84.40283428571428Q571.2479542857144 81.83314285714286 570.1607771428572 79.95529142857143Q569.0736 78.07744 567.0969142857143 76.39725714285714Q565.1202285714287 74.71707428571429 560.7715200000001 71.55437714285713Q555.8298057142858 67.99634285714285 552.81536 65.22898285714285Q549.8009142857144 62.461622857142856 547.7748114285715 58.557668571428565Q545.7487085714287 54.65371428571428 545.7487085714287 49.514331428571424Q545.7487085714287 41.31108571428571 550.690422857143 36.46820571428571Q555.6321371428572 31.625325714285708 563.7365485714287 31.625325714285708Q571.9397942857144 31.625325714285708 576.9803428571429 36.715291428571426Q582.0208914285715 41.805257142857144 582.0208914285715 50.20617142857142V52.57819428571428Q582.0208914285715 53.07236571428571 581.6749714285716 53.41828571428571Q581.3290514285715 53.76420571428571 580.8348800000001 53.76420571428571H571.9397942857144Q571.4456228571429 53.76420571428571 571.0997028571429 53.41828571428571Q570.7537828571429 53.07236571428571 570.7537828571429 52.57819428571428V50.00850285714286Q570.7537828571429 46.15396571428571 568.8265142857144 43.83136Q566.8992457142858 41.50875428571428 563.7365485714287 41.50875428571428Q560.7715200000001 41.50875428571428 558.8936685714286 43.633691428571424Q557.0158171428573 45.75862857142857 557.0158171428573 49.514331428571424Q557.0158171428573 53.07236571428571 559.0419200000001 55.54322285714285Q561.068022857143 58.01408 566.9980800000001 62.36278857142857Q573.0269714285715 66.81033142857143 576.0908342857144 69.62710857142858Q579.1546971428572 72.44388571428571 580.8348800000001 75.80425142857143Q582.515062857143 79.16461714285714 582.515062857143 83.80982857142857Q582.515062857143 92.21074285714285 577.4745142857143 97.30070857142857Q572.4339657142858 102.39067428571428 564.2307200000001 102.39067428571428Q556.0274742857143 102.39067428571428 550.9869257142858 97.44896Q545.9463771428573 92.50724571428572 545.9463771428573 84.50166857142857ZM624.7173028571428 66.81033142857143V100.41398857142856Q624.7173028571428 100.90816 624.3713828571429 101.25407999999999Q624.0254628571429 101.6 623.5312914285714 101.6H614.4385371428572Q613.9443657142857 101.6 613.5984457142857 101.25407999999999Q613.2525257142858 100.90816 613.2525257142858 100.41398857142856V67.69984Q613.2525257142858 64.14180571428571 611.7700114285715 62.165119999999995Q610.2874971428571 60.18843428571428 607.5201371428572 60.18843428571428Q604.6539428571429 60.18843428571428 603.0725942857143 62.263954285714284Q601.4912457142857 64.33947428571429 601.4912457142857 67.99634285714285V100.41398857142856Q601.4912457142857 100.90816 601.1453257142857 101.25407999999999Q600.7994057142857 101.6 600.3052342857143 101.6H591.21248Q590.7183085714286 101.6 590.3723885714286 101.25407999999999Q590.0264685714286 100.90816 590.0264685714286 100.41398857142856V33.60201142857143Q590.0264685714286 33.107839999999996 590.3723885714286 32.761919999999996Q590.7183085714286 32.416 591.21248 32.416H600.3052342857143Q600.7994057142857 32.416 601.1453257142857 32.761919999999996Q601.4912457142857 33.107839999999996 601.4912457142857 33.60201142857143V54.25837714285714Q601.4912457142857 54.55488 601.7383314285714 54.604297142857135Q601.9854171428572 54.65371428571428 602.28192 54.25837714285714Q605.6422857142857 50.30500571428571 611.6711771428571 50.30500571428571Q618.0954057142857 50.30500571428571 621.4063542857143 54.60429714285714Q624.7173028571428 58.90358857142857 624.7173028571428 66.81033142857143ZM666.4253714285713 80.54829714285714H644.5829942857142Q644.0888228571428 80.54829714285714 644.0888228571428 81.04246857142857V85.49001142857142Q644.0888228571428 88.55387428571429 645.7690057142856 90.53056000000001Q647.4491885714285 92.50724571428572 650.1177142857142 92.50724571428572Q652.3909028571428 92.50724571428572 654.0216685714286 91.07414857142857Q655.6524342857142 89.64105142857142 656.1466057142857 87.36786285714285Q656.4431085714285 86.37952 657.4314514285713 86.37952L666.2277028571428 86.77485714285714Q666.7218742857142 86.77485714285714 667.0677942857142 87.12077714285715Q667.4137142857143 87.46669714285714 667.3148799999999 88.05970285714285Q666.62304 94.97810285714286 662.2743314285714 98.68438857142857Q657.9256228571428 102.39067428571428 650.1177142857142 102.39067428571428Q642.0133028571428 102.39067428571428 637.3186742857142 98.09138285714286Q632.6240457142857 93.79209142857142 632.6240457142857 86.37952V66.31616Q632.6240457142857 59.10125714285714 637.3186742857142 54.703131428571425Q642.0133028571428 50.30500571428571 650.1177142857142 50.30500571428571Q658.2221257142857 50.30500571428571 662.9167542857142 54.703131428571425Q667.6113828571428 59.10125714285714 667.6113828571428 66.31616V79.36228571428572Q667.6113828571428 79.85645714285714 667.2654628571428 80.20237714285713Q666.9195428571428 80.54829714285714 666.4253714285713 80.54829714285714ZM644.0888228571428 67.20566857142856V71.65321142857142Q644.0888228571428 72.14738285714286 644.5829942857142 72.14738285714286H655.7512685714286Q656.2454399999999 72.14738285714286 656.2454399999999 71.65321142857142V67.20566857142856Q656.2454399999999 64.04297142857143 654.565257142857 62.11570285714286Q652.8850742857143 60.18843428571428 650.1177142857142 60.18843428571428Q647.4491885714285 60.18843428571428 645.7690057142856 62.165119999999995Q644.0888228571428 64.14180571428571 644.0888228571428 67.20566857142856ZM708.5287771428572 80.54829714285714H686.6864Q686.1922285714286 80.54829714285714 686.1922285714286 81.04246857142857V85.49001142857142Q686.1922285714286 88.55387428571429 687.8724114285715 90.53056000000001Q689.5525942857143 92.50724571428572 692.22112 92.50724571428572Q694.4943085714286 92.50724571428572 696.1250742857144 91.07414857142857Q697.75584 89.64105142857142 698.2500114285715 87.36786285714285Q698.5465142857144 86.37952 699.5348571428572 86.37952L708.3311085714287 86.77485714285714Q708.82528 86.77485714285714 709.1712 87.12077714285715Q709.5171200000001 87.46669714285714 709.4182857142857 88.05970285714285Q708.7264457142858 94.97810285714286 704.3777371428572 98.68438857142857Q700.0290285714286 102.39067428571428 692.22112 102.39067428571428Q684.1167085714286 102.39067428571428 679.42208 98.09138285714286Q674.7274514285715 93.79209142857142 674.7274514285715 86.37952V66.31616Q674.7274514285715 59.10125714285714 679.42208 54.703131428571425Q684.1167085714286 50.30500571428571 692.22112 50.30500571428571Q700.3255314285715 50.30500571428571 705.02016 54.703131428571425Q709.7147885714286 59.10125714285714 709.7147885714286 66.31616V79.36228571428572Q709.7147885714286 79.85645714285714 709.3688685714286 80.20237714285713Q709.0229485714286 80.54829714285714 708.5287771428572 80.54829714285714ZM686.1922285714286 67.20566857142856V71.65321142857142Q686.1922285714286 72.14738285714286 686.6864 72.14738285714286H697.8546742857144Q698.3488457142857 72.14738285714286 698.3488457142857 71.65321142857142V67.20566857142856Q698.3488457142857 64.04297142857143 696.6686628571429 62.11570285714286Q694.9884800000001 60.18843428571428 692.22112 60.18843428571428Q689.5525942857143 60.18843428571428 687.8724114285715 62.165119999999995Q686.1922285714286 64.14180571428571 686.1922285714286 67.20566857142856ZM737.586057142857 59.200091428571426H731.4583314285713Q730.96416 59.200091428571426 730.96416 59.69426285714285V85.58884571428571Q730.96416 89.0480457142857 732.2490057142857 90.38230857142857Q733.5338514285713 91.71657142857143 736.1035428571428 91.61773714285714H736.7953828571428Q737.2895542857142 91.61773714285714 737.6354742857143 91.96365714285713Q737.9813942857143 92.30957714285714 737.9813942857143 92.80374857142857V100.41398857142856Q737.9813942857143 100.90816 737.6354742857143 101.25407999999999Q737.2895542857142 101.6 736.7953828571428 101.6H733.4350171428571Q726.7142857142857 101.6 723.3045028571428 99.12914285714285Q719.8947199999999 96.65828571428571 719.8947199999999 89.83872V59.69426285714285Q719.8947199999999 59.200091428571426 719.4005485714285 59.200091428571426H715.9413485714285Q715.4471771428571 59.200091428571426 715.1012571428571 58.854171428571426Q714.7553371428571 58.50825142857143 714.7553371428571 58.01408V52.28169142857143Q714.7553371428571 51.78752 715.1012571428571 51.441599999999994Q715.4471771428571 51.095679999999994 715.9413485714285 51.095679999999994H719.4005485714285Q719.8947199999999 51.095679999999994 719.8947199999999 50.60150857142857V39.72973714285714Q719.8947199999999 39.23556571428571 720.24064 38.88964571428571Q720.58656 38.54372571428571 721.0807314285714 38.54372571428571H729.7781485714286Q730.2723199999999 38.54372571428571 730.61824 38.88964571428571Q730.96416 39.23556571428571 730.96416 39.72973714285714V50.60150857142857Q730.96416 51.095679999999994 731.4583314285713 51.095679999999994H737.586057142857Q738.0802285714285 51.095679999999994 738.4261485714285 51.441599999999994Q738.7720685714285 51.78752 738.7720685714285 52.28169142857143V58.01408Q738.7720685714285 58.50825142857143 738.4261485714285 58.854171428571426Q738.0802285714285 59.200091428571426 737.586057142857 59.200091428571426Z" fill="#4A9EFF"/>
 </svg></span>
     </a>
-    <div class="navwrap">
-      <nav class="navlinks" aria-label="Main"><a href="/">Raster</a><a href="/tech-sheet/pricing/">Pricing</a><a href="/tech-sheet/beta/">Beta</a><a href="/tech-sheet/support/">Support</a></nav>
-      <span class="beta-chip">EARLY BETA</span>
-    </div>
+    <nav class="navlinks" aria-label="Products"><a href="/tech-sheet/" aria-current="page">Tech Sheet</a><a href="/label-station/">Label Station</a><a href="/production-manager/">Production Manager</a></nav>
   </header>
+  <nav class="subnav" aria-label="Tech Sheet"><a href="/tech-sheet/" aria-current="page">Overview</a><a href="/tech-sheet/pricing/">Pricing</a><a href="/tech-sheet/beta/">Beta</a><a href="/tech-sheet/support/">Support</a><span class="beta-chip">EARLY BETA</span></nav>
   <main id="top">
     <div class="hero">
       <div>
@@ -278,7 +291,7 @@ footer a { color: var(--ink-2); }
 
     <section aria-labelledby="features-h">
       <h2 id="features-h">Built around the sheet you already keep</h2>
-      <div class="features">
+      <div class="features four">
         <article class="feature">
           <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Tech sheet read into the Neon Tech Sheet app"><defs><radialGradient id="neon-spot-sheet-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#neon-spot-sheet-glow)"/><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M26 32H66L86 52V120a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V36a4 4 0 0 1 4-4Z" stroke="#b7bcc6"/><path d="M66 32V52H86" stroke="#b7bcc6"/><path d="M34 68H72M34 80H72M34 92H62M34 104H68" stroke="#333a47"/><path d="M98 76H134" stroke="#4a9eff" stroke-width="2"/><path d="M127 69l7 7-7 7" stroke="#4a9eff" stroke-width="2"/><rect x="152" y="54" width="52" height="36" rx="4" stroke="#b7bcc6"/><path d="M144 99H212" stroke="#b7bcc6"/></g></svg></div>
           <div><h3>Starts from your tech sheet</h3><p>No new database to fill in. It reads the gear list, IPs and VLANs you already keep in Google Sheets.</p></div>
@@ -290,6 +303,10 @@ footer a { color: var(--ink-2); }
         <article class="feature">
           <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Radar sweep watching the devices on the show network"><defs><radialGradient id="neon-spot-audit-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#neon-spot-audit-glow)"/><g transform="translate(60 15)" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="60" r="44" stroke="#333a47" stroke-width="1.5"/><circle cx="60" cy="60" r="28" stroke="#333a47" stroke-width="1.5"/><circle cx="60" cy="60" r="12" stroke="#333a47" stroke-width="1.5"/><g class="sweep"><path d="M60 16A44 44 0 0 1 91.1 28.9L60 60Z" fill="#4a9eff" fill-opacity=".16" stroke="none"/><path d="M60 60L91.1 28.9" stroke="#4a9eff" stroke-width="2"/></g><circle cx="84" cy="44" r="3.5" fill="#b7bcc6"/><circle cx="38" cy="78" r="3.5" fill="#b7bcc6"/><circle cx="74" cy="90" r="3.5" fill="#5b6270"/><circle cx="34" cy="40" r="3.5" fill="#5b6270"/></g></svg></div>
           <div><h3>Keeps watching</h3><p>A live dashboard on the tech table and on your phone. It alerts you when a device drops, and marks the screen stale if it stops updating.</p></div>
+        </article>
+        <article class="feature">
+          <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="A show machine's screen opened on your own laptop over the network"><defs><radialGradient id="neon-spot-remote-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#neon-spot-remote-glow)"/><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><rect x="22" y="38" width="64" height="44" rx="4" stroke="#b7bcc6"/><path d="M54 82v16M42 98H66" stroke="#b7bcc6"/><path d="M32 52H62M32 62H74M32 72H54" stroke="#333a47"/><path d="M98 68H134" stroke="#4a9eff" stroke-width="2" stroke-dasharray="4 5"/><path d="M127 61l7 7-7 7" stroke="#4a9eff" stroke-width="2"/><rect x="152" y="38" width="60" height="44" rx="4" stroke="#b7bcc6"/><path d="M144 98H220" stroke="#b7bcc6"/><path d="M161 52H189M161 62H200M161 72H181" stroke="#333a47"/></g></svg></div>
+          <div><h3>Watch from anywhere</h3><p>Open any device&rsquo;s screen right from the dashboard — on the show network, or from home over your own private network. No separate VNC app to configure. Included in every license.</p></div>
         </article>
       </div>
     </section>
