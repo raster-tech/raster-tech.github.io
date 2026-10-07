@@ -132,6 +132,12 @@ footer a { color: var(--ink-2); }
 .pricing-table td:first-child, .pricing-table th:first-child { color: var(--muted); font: 500 14px var(--mono); width: 220px; }
 .pricing-table td { color: var(--ink-2); }
 .pricing-table .price { font: 800 22px var(--display); color: var(--ink); }
+img.page-shot { max-width: 520px; display: block; margin: 0 auto; }
+.figure-section figure + figure { margin-top: 28px; }
+.table-scroll { overflow-x: auto; margin: 0 0 28px; }
+.codes-table td:first-child, .codes-table th:first-child { width: 150px; white-space: nowrap; }
+.codes-table .ver { display: block; white-space: normal; font: 500 13px/1.4 var(--mono); color: var(--muted); }
+.codes h2 { margin: 48px 0 8px; } .codes h3 { margin: 28px 0 10px; }
 .includes { font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 20px 0; padding-left: 20px; }
 .includes li { margin-bottom: 6px; }
 .founding { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 20px 0 30px; }
@@ -172,6 +178,8 @@ footer a { color: var(--ink-2); }
 .faq details[open] summary::after { content: "\2212"; }
 .faq details p, .faq details ul { font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 0 0 16px; padding-left: 0; }
 .faq details ul { padding-left: 20px; }
+.faq-shot { margin: 0 0 18px; }
+.faq-shot img { display: block; width: 100%; max-width: 486px; height: auto; border: 1px solid var(--line); border-radius: 8px; }
 
 
 .reqs { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 22px; font-family: var(--body); font-size: 16px; color: var(--ink-2); margin: 0 0 30px; }
@@ -224,7 +232,7 @@ footer a { color: var(--ink-2); }
     <section class="pagehead">
       <p class="eyebrow">Beta</p>
       <h1>Join the beta</h1>
-      <p class="sub">Download it, sign in, and start your first audit.</p>
+      <p class="sub">Download it, choose a show, and start your first audit.</p>
       <p class="sub">Raster Tech Sheet is a new tool, tested on real shows. It&rsquo;s free while it&rsquo;s in beta. Expect rough edges, and tell us what breaks.</p>
     </section>
     <section>
@@ -232,8 +240,8 @@ footer a { color: var(--ink-2); }
       <h2 id="get-started-h">Get started</h2>
       <ol class="steps">
         <li><strong>Download</strong>the latest build from the <a href="https://github.com/neon-tech-dev/tech-sheet-releases/releases/latest">release page</a>.</li>
-        <li><strong>Install it.</strong> The builds aren&rsquo;t code-signed yet, so Windows and macOS will warn you the first time — the <a href="https://github.com/neon-tech-dev/tech-sheet-releases/releases/latest">beta guide</a> shows how to get past it.</li>
-        <li><strong>Sign in and run an audit.</strong> Sign in with the Google account that can open your show&rsquo;s tech sheet, or choose <b>New Show</b> to build one from inside the app if you don&rsquo;t have one yet, then plug into the show network and run your first audit.</li>
+        <li><strong>Install it.</strong> The builds aren&rsquo;t code-signed yet, so the first time: - <b>Windows:</b> "Windows protected your PC" → <b>More info → Run anyway</b>. - <b>Mac:</b> drag <b>Raster Tech Sheet</b> onto <b>Applications</b> and open it. When macOS says it can&rsquo;t check the app, click <b>Done</b>, then <b>System Settings → Privacy &amp; Security → Open Anyway</b>, and <b>Open Anyway</b> again when macOS asks. (Right-click → Open only works on macOS 14.) The warning is about the missing signature, not anything found in the app.</li>
+        <li><strong>Choose a show and run an audit.</strong> <b>Join an existing show</b> to sign in and pick your sheet, or <b>Start a new show</b> to build one. Then plug into the show network and press <b>Audit Now</b>.</li>
       </ol>
       <div class="platform-actions">
         <a class="btn btn-primary" href="https://github.com/neon-tech-dev/tech-sheet-releases/releases/latest">
@@ -251,7 +259,7 @@ footer a { color: var(--ink-2); }
       <h2 id="wbm-h">What beta means</h2>
       <div class="faq">
         <details><summary>No metrics, no survey</summary><p>We just want to know what breaks and what saves you time.</p></details>
-        <details><summary>It&rsquo;s free for as long as you&rsquo;re testing</summary><p>Friends testing now keep it free for good, once paid plans start.</p></details>
+        <details><summary>It&rsquo;s free for as long as you&rsquo;re testing</summary><p>No license, nothing to activate. You&rsquo;ll get plenty of notice before paid plans start.</p></details>
         <details><summary>Updates come often</summary><p>Use Check for Updates in the app, or come back here.</p></details>
       </div>
     </section>

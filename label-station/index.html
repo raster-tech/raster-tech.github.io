@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon-16.png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
 <title>Label Station -- Raster</title>
-<meta name="description" content="Label Station is in development. See what it will do and how to hear when it's ready.">
+<meta name="description" content="Label Station prints device, case, stek and bundle labels straight from your show sheet. Public beta for Windows; Mac comes next.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
@@ -132,6 +132,12 @@ footer a { color: var(--ink-2); }
 .pricing-table td:first-child, .pricing-table th:first-child { color: var(--muted); font: 500 14px var(--mono); width: 220px; }
 .pricing-table td { color: var(--ink-2); }
 .pricing-table .price { font: 800 22px var(--display); color: var(--ink); }
+img.page-shot { max-width: 520px; display: block; margin: 0 auto; }
+.figure-section figure + figure { margin-top: 28px; }
+.table-scroll { overflow-x: auto; margin: 0 0 28px; }
+.codes-table td:first-child, .codes-table th:first-child { width: 150px; white-space: nowrap; }
+.codes-table .ver { display: block; white-space: normal; font: 500 13px/1.4 var(--mono); color: var(--muted); }
+.codes h2 { margin: 48px 0 8px; } .codes h3 { margin: 28px 0 10px; }
 .includes { font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 20px 0; padding-left: 20px; }
 .includes li { margin-bottom: 6px; }
 .founding { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 20px 0 30px; }
@@ -172,6 +178,8 @@ footer a { color: var(--ink-2); }
 .faq details[open] summary::after { content: "\2212"; }
 .faq details p, .faq details ul { font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 0 0 16px; padding-left: 0; }
 .faq details ul { padding-left: 20px; }
+.faq-shot { margin: 0 0 18px; }
+.faq-shot img { display: block; width: 100%; max-width: 486px; height: auto; border: 1px solid var(--line); border-radius: 8px; }
 
 
 .reqs { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 22px; font-family: var(--body); font-size: 16px; color: var(--ink-2); margin: 0 0 30px; }
@@ -221,7 +229,7 @@ footer a { color: var(--ink-2); }
   </header>
   <main>
     <section class="pagehead">
-      <p class="eyebrow"><img src="/assets/label-station-icon.png" alt="" width="22" height="22">In development</p>
+      <p class="eyebrow"><img src="/assets/label-station-icon.png" alt="" width="22" height="22">Public beta</p>
       <h1>Label Station</h1>
       <p class="sub">Prints the labels a prep tech sets Tech Sheet up with.</p>
     </section>
@@ -253,9 +261,17 @@ footer a { color: var(--ink-2); }
       </figure>
     </section>
     <section>
-<p><b>Label Station</b> reads straight from your show's tech sheet — no separate labeling software, and no retyping what's already in your gear index. Built for shop prep — the few weeks before load-in, not the run itself. Most productions already expense a label printer and tape; this fits the same line item.</p>
-<p>It prints device and case labels, stek tape strips, and bundle end tags — each device gets a front and back label by default — straight from your show sheet, with cable labels next. It's still in beta, so expect rough edges while we finish it up.</p>
-<p>Want to know when it's ready for other engineers to try? Email support@rastertech.app and we'll let you know — no signup, no list, just a note when it's ready.</p>
+<p><b>Label Station</b> reads straight from your show's tech sheet: no separate labeling software, and no retyping what's already in your gear index. Built for shop prep, the few weeks before load-in, not the run itself. Most productions already expense a label printer and tape; this fits the same line item.</p>
+<p><b>What it prints, from the same sheet:</b></p>
+<ul><li><b>Device labels,</b> front and back. Fronts come first: 18 mm on the front, 12 mm on the back.</li><li><b>Case labels</b> and <b>stek tape strips.</b></li><li><b>Cable labels</b> from your sheet's FLOW tab: every row is one cable, with a wrap label for each end. Each label has three lines: the cable's own <b>Label</b> (or both ends, if it has none), then where it runs, then its details, like <code>Cat6 · 75 ft</code>.</li><li><b>Bundle sheets:</b> one line per cable, an end tag for each end of every bundle (with its color, like "FOH-1 · RED"), a Long cables sheet, and a sign-off line at the bottom.</li></ul>
+<p>You see every label before it prints, and before anything prints it tells you exactly how many labels and sheets it will use. A printer that hasn't had its test print yet saves the label files for you to print from the folder instead. When something goes wrong, it says so in plain words, with a short code to quote if you write to us.</p>
+<p><b>Windows and Mac.</b> Label Station 0.1.2 is a free public beta for Windows 10 and 11, and for Apple Silicon Macs on macOS 14 (Sonoma) or later. On a Mac it lives in the menu bar. A printer prints straight from Label Station only after a real test print <b>on a Mac</b>; until then the button says <b>Save labels</b>, and <b>Open folder</b> takes you to the files to print yourself.</p>
+<p><a href="https://github.com/raster-tech/label-station-releases/releases/latest">Download Label Station</a>. It isn't signed yet. On Windows, "Windows protected your PC" appears: click <b>More info → Run anyway</b>. On a Mac, drag <b>Raster Label Station</b> into <b>Applications</b>; the first time you open it, click <b>Done</b>, then <b>System Settings → Privacy &amp; Security → Open Anyway</b>. The quick start guide is attached to the release.</p>
+<p>Questions, or a label that came out wrong? Email <b>support@rastertech.app</b>.</p>
+    </section>
+    <section class="figure-section">
+      <figure class="board"><img src="/assets/screenshots/label-station/ls-page-labels-preview.png" alt="The Devices tab: each device&#x27;s front and back label previewed before you save, front on 18 mm tape and back on 12 mm."></figure>
+      <figure class="board"><img class="page-shot" src="/assets/screenshots/label-station/ls-page-bundle-sheet.png" alt="A bundle sheet: the bundle&#x27;s name, where it runs, its color, and every cable in it with a Packed box."></figure>
     </section>
   </main>
   <footer>
