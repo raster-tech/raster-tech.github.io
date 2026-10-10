@@ -111,6 +111,10 @@ section { padding-block: 56px; border-top: 1px solid var(--line); }
 .steps li { counter-increment: step; padding-top: 20px; border-top: 2px solid var(--line-2); color: var(--ink-2); font-size: 16px; }
 .steps li::before { content: counter(step, decimal-leading-zero); display: block; font: 500 14px/1 var(--mono); color: var(--brand-blue); margin-bottom: 14px; letter-spacing: .06em; }
 .steps strong { display: block; font: 700 22px/1.15 var(--display); color: var(--ink); margin-bottom: 6px; }
+.steps .step-list { list-style: disc; margin: 8px 0; padding-left: 20px; }
+.steps .step-list li { counter-increment: none; padding: 0; border: 0; margin: 0 0 6px; }
+.steps .step-list li::before { content: none; }
+.steps .step-tail { display: block; }
 
 .credit { font: 600 clamp(22px, 2.6vw, 30px)/1.3 var(--display); color: var(--ink-2); max-width: 30em; margin: 0; text-wrap: balance; }
 .credit b { color: var(--ink); font-weight: 700; }
@@ -235,7 +239,7 @@ img.page-shot { max-width: 520px; display: block; margin: 0 auto; }
     </section>
     <section class="figure-section">
       <figure class="board magenta">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 450" role="img" aria-label="Two Label Station device tape labels (a switch and a camera) beside a segment of a printed stek strip, showing eight labelled port cells.">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 450" role="img" aria-label="Two Label Station device tape labels (a switch and a camera) beside a segment of a printed stek strip, showing eight labeled port cells.">
 <defs>
   <filter id="tapeShadow" x="-20%" y="-20%" width="140%" height="160%">
     <feDropShadow dx="0" dy="3.5999999999999996" stdDeviation="4.800000000000001" flood-color="#000" flood-opacity=".38"/>
@@ -263,7 +267,7 @@ img.page-shot { max-width: 520px; display: block; margin: 0 auto; }
     <section>
 <p><b>Label Station</b> reads straight from your show's tech sheet: no separate labeling software, and no retyping what's already in your gear index. Built for shop prep, the few weeks before load-in, not the run itself. Most productions already expense a label printer and tape; this fits the same line item.</p>
 <p><b>What it prints, from the same sheet:</b></p>
-<ul><li><b>Device labels,</b> front and back. Fronts come first: 18 mm on the front, 12 mm on the back.</li><li><b>Case labels</b> and <b>stek tape strips.</b></li><li><b>Cable labels</b> from your sheet's FLOW tab: every row is one cable, with the same wrap label at each end. Each label has three lines: the cable's own <b>Label</b> (or both ends, if it has none), then where it runs, then its details, like <code>Cat6 · 75 ft</code>.</li><li><b>Bundle sheets:</b> one line per cable, an end tag for each end of every bundle (with its color, like "FOH-1 · RED"), a Long cables sheet, and a sign-off line at the bottom.</li></ul>
+<ul><li><b>Device labels,</b> front and back. Fronts come first: 18 mm on the front, 12 mm on the back.</li><li><b>Case labels</b> and <b>stek tape strips.</b></li><li><b>Cable labels</b> from your sheet's FLOW tab: every row is one cable, with the same wrap label at each end. Each label has three lines: the cable's own <b>Label</b> (or both ends, if it has none), then where it runs, then its details, like <code>Cat6 · 75 ft</code>. Runs of 50 ft or more print on 24 mm tape, or 36 mm where the printer takes it.</li><li><b>Bundle sheets:</b> one line per cable, an end tag for each end of every bundle (with its color, like "FOH-1 · RED"), a Long cables sheet, and a sign-off line at the bottom.</li></ul>
 <p>Each row says whether its labels were saved or printed, and when.</p>
 <p>You see every label before it prints, and before anything prints it tells you exactly how many labels and sheets it will use. A printer that hasn't had its test print yet saves the label files for you to print from the folder instead. When something goes wrong, it says so in plain words, with a short code to quote if you write to us.</p>
 <p><b>Windows and Mac.</b> Label Station 0.1.2 is a free public beta for Windows 10 and 11, and for Apple Silicon Macs on macOS 14 (Sonoma) or later. On a Mac it lives in the menu bar. Printing straight from Label Station on a Mac stays off until a printer has passed its test print on a Mac: until then the button says <b>Save labels</b>, and <b>Open folder</b> takes you to the files to print yourself.</p>
