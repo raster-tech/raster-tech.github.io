@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon-16.png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
 <title>Privacy Policy -- Raster Tech</title>
-<meta name="description" content="How Raster Tech Sheet and Raster Label Station handle your data.">
+<meta name="description" content="How Raster Run and Raster Label handle your data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
@@ -220,22 +220,22 @@ footer a { color: var(--ink-2); }
     <section class="pagehead">
       <p class="eyebrow">Legal</p>
       <h1>Privacy Policy</h1>
-      <p class="sub">Effective date: October 4, 2026 &middot; Operator: Raster Tech (Kevin Downing) &middot; Contact: support@rastertech.app</p>
+      <p class="sub">Effective date: October 11, 2026 &middot; Operator: Raster Tech (Kevin Downing) &middot; Contact: support@rastertech.app</p>
     </section>
 <section><h2>What these apps are</h2><p>Raster Tech makes two desktop applications that run on your own computer:</p>
-<ul><li><b>Raster Tech Sheet</b> checks the devices on your show's network against a Google Sheet you control, and writes the results back into that sheet.</li><li><b>Raster Label Station</b> reads the same sheet and prints labels for your gear.</li></ul>
+<ul><li><b>Raster Run</b> (formerly Raster Tech Sheet) checks the devices on your show's network against a Google Sheet you control, and writes the results back into that sheet.</li><li><b>Raster Label</b> (formerly Raster Label Station) reads the same sheet and prints labels for your gear.</li></ul>
 <p>Both use the same Google sign-in, described below.</p></section>
 <section><h2>What they can access</h2><p>When you sign in with Google, the apps ask for Google's <b><code>drive.file</code></b> permission. This is a narrow permission: it lets an app see and use <b>only the specific spreadsheets you pick</b> in Google's own file picker, plus any spreadsheet the app creates for you. It cannot see, list or open any other file in your Google account.</p>
-<p>Advanced: if you connect Tech Sheet with your own Google service account instead, you create that account in your own Google Cloud project and share your show sheet with it directly. We never receive or hold that account or its key; it stays entirely under your control.</p></section>
+<p>Advanced: if you connect Raster Run with your own Google service account instead, you create that account in your own Google Cloud project and share your show sheet with it directly. We never receive or hold that account or its key; it stays entirely under your control.</p></section>
 <section><h2>What they read</h2><p>From the spreadsheet you've picked:</p>
-<ul><li><b>Tech Sheet:</b> the device list, IP addresses and VLAN assignments (the GEAR INDEX and IP INDEX tabs), the current values in the status columns, and the Sub Packet's settings.</li><li><b>Label Station:</b> the device, case, stek, bundle and cable lists it makes labels from (tabs such as GEAR INDEX, Case List, STEKS, BUNDLES and FLOW).</li></ul></section>
-<section><h2>What they write</h2><p><b>Label Station never writes to your sheet.</b> It only reads it.</p>
-<p><b>Tech Sheet</b> writes back into that same spreadsheet, and nowhere else:</p>
+<ul><li><b>Raster Run:</b> the device list, IP addresses and VLAN assignments (the GEAR INDEX and IP INDEX tabs), the current values in the status columns, and the Sub Packet's settings.</li><li><b>Raster Label:</b> the device, case, stek, bundle and cable lists it makes labels from (tabs such as GEAR INDEX, Case List, STEKS, BUNDLES and FLOW).</li></ul></section>
+<section><h2>What they write</h2><p><b>Raster Label never writes to your sheet.</b> It only reads it.</p>
+<p><b>Raster Run</b> writes back into that same spreadsheet, and nowhere else:</p>
 <ul><li>the <b>Status</b> column (Verified, Partial or Failed) for each device;</li><li>the <b>Audit Details</b> and <b>Last Check</b> columns;</li><li>a device's MAC address, only if that cell was previously blank;</li><li>a list of unexpected devices found on the network, on their own tab;</li><li>the Sub Packet's section order, on the SUB PACKET tab, when you save it.</li></ul>
-<p>If you choose <b>Start a new show</b>, Tech Sheet creates one new show spreadsheet in your Google Drive for you to fill in. It never changes any other file.</p></section>
+<p>If you choose <b>Start a new show</b>, the app creates one new show spreadsheet in your Google Drive for you to fill in. It never changes any other file.</p></section>
 <section><h2>What leaves your computer</h2><ul><li>The Google Sheets and Drive calls needed to read, write or create your show spreadsheet.</li><li><b>Checking for updates</b> asks GitHub, where our installers are published, for the latest version. Nothing about you or your show is sent with it.</li><li><b>Send feedback</b> opens your own email app with a message you can read and edit before you send it. An error log is attached only if you choose to include it, and it never contains your sign-in, passwords or sheet contents.</li></ul>
 <p>Nothing else leaves your machine or your Google account. We do not run a server that stores your show data. We do not use analytics or tracking of any kind, and we do not share your data with any third party.</p></section>
-<section><h2>Data retention</h2><p>Your show data lives in your own Google Sheet, under your own Google account, for as long as you keep it there. Each app also keeps a small local folder on your computer: your settings, which show you last opened, cached status for offline use, an error log, and (for Label Station) the label files it saves for printing. Nothing is retained by us; there is nothing on our side to retain.</p></section>
+<section><h2>Data retention</h2><p>Your show data lives in your own Google Sheet, under your own Google account, for as long as you keep it there. Each app also keeps a small local folder on your computer: your settings, which show you last opened, cached status for offline use, an error log, and (for Raster Label) the label files it saves for printing. Nothing is retained by us; there is nothing on our side to retain.</p></section>
 <section><h2>How to revoke access</h2><ul><li>Remove the apps' access to your Google account at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li><li>Use <b>Log Out</b> in either app, or delete its local folder on your computer, to remove what it keeps locally.</li></ul></section>
 <section><h2>Use of your data</h2><p>We use the data the apps read and write solely to provide their own functionality to you: checking your devices, keeping your sheet's status current, and printing your labels. We do not use it for advertising, do not sell it, and do not transfer it to anyone else, consistent with Google's Limited Use requirements for apps that use Google user data.</p></section>
 <section><h2>Changes to this policy</h2><p>If this changes, we'll update the date at the top of this page.</p></section>
