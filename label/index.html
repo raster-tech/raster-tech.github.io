@@ -1,233 +1,59 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f1115">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon-16.png">
-<link rel="apple-touch-icon" href="/assets/icon-180.png">
-<title>Raster Label</title>
-<meta name="description" content="Raster Label prints device, case, stek and bundle labels straight from your show sheet. Public beta for Windows; Mac comes next.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raster Label</title><meta name="description" content="Raster Label: Prints the show's labels.">
+<link rel="icon" href="/assets/icon-32.png"><link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400&display=swap">
 <style>
-:root {
-  color-scheme: dark;
-  --ground: #0f1115; --surface: #171a21; --surface-2: #1e212a;
-  --line: #262b36; --line-2: #333a47;
-  --ink: #e6e8eb; --ink-2: #b7bcc6; --muted: #8b909c;
-  --accent: #70fb3a; --accent-hover: #8bff5c; --on-accent: #0f1115;
-  --accent-soft: rgba(112, 251, 58, 0.16);
-  --brand-blue: #4a9eff; --brand-blue-soft: rgba(74, 158, 255, 0.16);
-  --brand-magenta: #e866b5; --brand-magenta-soft: rgba(232, 102, 181, 0.16);
-  --warn: #e0b93d; --warn-soft: #3a3315; --warn-line: #6b591f;
-  --display: "Barlow Condensed", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --r: 10px; --wrap: 1120px;
-}
+:root { --ground:#0f1115; --surface:#171a21; --line:#262b36; --ink:#e6e8eb; --ink2:#b7bcc6; --muted:#8b909c; --accent:#70fb3a; }
 * { box-sizing: border-box; }
-html { background: var(--ground); }
-html, body { overflow-x: clip; }
-body { margin: 0; background: var(--ground); color: var(--ink); font: 400 17px/1.6 var(--body); padding-inline: 20px; -webkit-font-smoothing: antialiased; }
-a { color: var(--brand-blue); }
-a:focus-visible, .btn:focus-visible, .navlinks a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-.wrap { max-width: var(--wrap); margin-inline: auto; }
-
-body > header, body > nav.subnav, body > main, body > footer { max-width: var(--wrap); margin-inline: auto; }
-main p, main li { max-width: 62ch; }   
-
-.top { display: flex; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
-
-.brand { display: flex; align-items: center; gap: 16px; min-height: 44px; text-decoration: none; }
-.lockup { display: block; height: 32px; }
-.lockup svg { display: block; height: 100%; width: auto; filter: drop-shadow(0 0 6px var(--accent-soft)); }
-.navwrap { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-.navlinks { display: flex; gap: 22px; }
-.navlinks a, .subnav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-2); text-decoration: none; font: 600 16px var(--display); letter-spacing: .01em; }
-.navlinks a[aria-current], .subnav a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--ink-2); }
-.navlinks a:hover, .subnav a:hover { color: var(--ink); }
-
-.subnav { display: flex; align-items: center; gap: 4px 22px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
-.subnav .beta-chip { margin-left: auto; }
-.beta-chip { font: 500 13px/1 var(--mono); color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 5px 7px; letter-spacing: .04em; }
-
-.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 8px; font: 700 18px/1 var(--display); letter-spacing: .02em; text-decoration: none; transition: background-color .15s ease; }
-.btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 0 24px var(--accent-soft); }
-.btn-primary:hover { background: var(--accent-hover); }
-.btn-ghost { color: var(--ink); border: 1px solid var(--line-2); }
-.btn-ghost:hover { background: var(--surface); }
-.btn svg { width: 18px; height: 18px; }
-
-.hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: center; padding-block: 48px 48px; }
-.hero.text-only { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
-.eyebrow { font: 500 14px/1.4 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
-.eyebrow img { width: 22px; height: 22px; flex: none; margin-block: -2px; }
-
-h1 { font: 800 clamp(44px, 6vw, 72px)/.95 var(--display); text-transform: uppercase; letter-spacing: -.005em; margin: 0; color: var(--ink); text-wrap: balance; }
-h2 { font: 700 clamp(30px, 3.6vw, 40px)/1.05 var(--display); text-transform: uppercase; margin: 0 0 30px; text-wrap: balance; }
-h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
-.sub { font-size: 19px; color: var(--ink-2); max-width: 34em; margin: 22px 0 30px; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.fine { font: 400 14px/1.5 var(--mono); color: var(--muted); margin: 18px 0 0; }
-.board { position: relative; margin: 0 0 72px; }
-.board::before { content: ""; position: absolute; inset: -12% -8%; background: radial-gradient(closest-side, var(--brand-blue-soft), transparent); pointer-events: none; }
-.board.magenta::before { background: radial-gradient(closest-side, var(--brand-magenta-soft), transparent); }
-.board > img, .board > svg, .gallery-pair img, .mac-pair img { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
-.board figcaption { position: relative; font: 400 14px/1.5 var(--mono); color: var(--muted); margin-top: 12px; max-width: 62ch; }
-
-.board > img { max-width: 960px; }
-.gallery-item .board > img { max-width: 800px; }
-.gallery-item { margin: 0 0 56px; }
-.gallery-item h3 { margin-bottom: 12px; }
-.gallery-item .board { margin: 0; }
-.gallery-pair { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; min-width: 0; }
-.gallery-pair img { min-width: 0; }
-@media (max-width: 720px) { .gallery-pair { grid-template-columns: 1fr; } }
-
-.board img.tray-shot, .mac-pair img.tray-shot { width: auto; max-width: 240px; }
-.gallery-item .board img.tray-shot { margin-inline: auto; }
-.board img.panel-shot { max-width: 280px; }   
-.mac-pair { position: relative; display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; min-width: 0; }
-.mac-pair .tray-shot { flex: 0 1 240px; min-width: 0; }
-.mac-pair .dash-shot { flex: 1 1 420px; min-width: 0; }
-
-@media (max-width: 720px) { .mac-pair { flex-direction: column; } .mac-pair .tray-shot { max-width: 200px; } .mac-pair .dash-shot { flex: none; } }
-
-
-section.pagehead { padding-block: 48px 8px; border-top: 0; }
-.figure-section .board { margin: 0; }
-section { padding-block: 56px; border-top: 1px solid var(--line); }
-.features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.features.four, .features.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.feature { display: flex; flex-direction: column; gap: 18px; }
-.feature .art { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); aspect-ratio: 8 / 5; max-width: 100%; display: grid; place-items: center; overflow: hidden; }
-.feature .art > svg { width: 100%; height: auto; display: block; }
-.feature p { margin: 0; color: var(--ink-2); font-size: 16px; }
-
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
-.steps li { counter-increment: step; padding-top: 20px; border-top: 2px solid var(--line-2); color: var(--ink-2); font-size: 16px; }
-.steps li::before { content: counter(step, decimal-leading-zero); display: block; font: 500 14px/1 var(--mono); color: var(--brand-blue); margin-bottom: 14px; letter-spacing: .06em; }
-.steps strong { display: block; font: 700 22px/1.15 var(--display); color: var(--ink); margin-bottom: 6px; }
-.steps .step-list { list-style: disc; margin: 8px 0; padding-left: 20px; }
-.steps .step-list li { counter-increment: none; padding: 0; border: 0; margin: 0 0 6px; }
-.steps .step-list li::before { content: none; }
-.steps .step-tail { display: block; }
-
-.credit { font: 600 clamp(22px, 2.6vw, 30px)/1.3 var(--display); color: var(--ink-2); max-width: 30em; margin: 0; text-wrap: balance; }
-.credit b { color: var(--ink); font-weight: 700; }
-
-footer { border-top: 1px solid var(--line); padding-block: 32px 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; color: var(--muted); font-size: 14px; }
-footer p { margin: 0; max-width: 46em; }
-footer a { color: var(--ink-2); }
-
-.sweep { transform-box: view-box; transform-origin: 120px 75px; animation: sweep 6s linear infinite; }
-@keyframes sweep { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .sweep { animation: none; } .btn { transition: none; } }
-
-
-.price-note { font-family: var(--body); color: var(--ink-2); max-width: 62ch; margin: 0 0 30px; font-size: 16px; }
-.price-note b { color: var(--ink); }
-.pricing-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-.pricing-table th, .pricing-table td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 16px; }
-.pricing-table th { font: 700 15px var(--display); text-transform: uppercase; letter-spacing: .03em; color: var(--ink); background: var(--surface); }
-.pricing-table td:first-child, .pricing-table th:first-child { color: var(--muted); font: 500 14px var(--mono); width: 220px; }
-.pricing-table td { color: var(--ink-2); }
-.pricing-table .price { font: 800 22px var(--display); color: var(--ink); }
-img.page-shot { max-width: 520px; display: block; margin: 0 auto; }
-.figure-section figure + figure { margin-top: 28px; }
-.table-scroll { overflow-x: auto; margin: 0 0 28px; }
-.codes-table td:first-child, .codes-table th:first-child { width: 150px; white-space: nowrap; }
-.codes-table .ver { display: block; white-space: normal; font: 500 13px/1.4 var(--mono); color: var(--muted); }
-.codes h2 { margin: 48px 0 8px; } .codes h3 { margin: 28px 0 10px; }
-.codes h2[id], .codes h3[id], #top { scroll-margin-top: 16px; }
-.codes-jump ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 20px; padding: 0; }
-.codes-jump li { margin: 0; padding: 0; }
-.codes-jump li::before { content: none; }
-.codes-jump a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 8px; font: 600 14px/1 var(--mono); color: var(--ink); text-decoration: none; }
-.codes-jump a:hover, .codes-jump a:focus-visible { border-color: var(--accent); color: var(--accent); }
-.codes-apps a { font: 700 17px/1 var(--display); }
-.codes-top { margin: 16px 0 0; } .codes-top a { display: inline-flex; align-items: center; min-height: 44px; }
-.includes { font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 20px 0; padding-left: 20px; }
-.includes li { margin-bottom: 6px; }
-.founding { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 20px 0 30px; }
-.founding b { color: var(--ink); }
-
-
-.timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 0 0 40px; position: relative; }
-.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 2px; background: var(--line-2); }
-.tl-step { position: relative; padding: 26px 14px 0 0; }
-.tl-step::before { content: ""; position: absolute; left: 0; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--ground); border: 2px solid var(--line-2); }
-.tl-step.now::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 16px var(--accent-soft); }
-.tl-step .k { font: 500 13px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-.tl-step.now .k { color: var(--accent); }
-.tl-step .h { font: 700 20px/1.1 var(--display); margin: 6px 0 4px; color: var(--ink); }
-.tl-step p { margin: 0; color: var(--ink-2); font-size: 16px; }
-
-.tier-group { margin: 0 0 28px; }
-.tier-group .group-label { font: 700 14px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
-.tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 0 0 12px; }
-.tier-card { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--surface); padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; }
-.tier-card.hi { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-soft), 0 0 30px var(--accent-soft); }
-.tier-card .who { font: 700 20px/1.1 var(--display); color: var(--ink); }
-.tier-card .p { font: 800 36px/1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; }
-.tier-card .p small { font: 500 14px var(--mono); color: var(--muted); margin-left: 5px; letter-spacing: .02em; }
-.tier-card .desc { color: var(--ink-2); font-size: 16px; margin: 0; }
-.tier-card .soon { display: inline-block; align-self: flex-start; font: 500 13px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 3px 6px; margin-top: 2px; }
-.pricing-fine { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 20px; color: var(--ink-2); font-size: 16px; margin: 0 0 20px; }
-.pricing-fine b { color: var(--ink); }
-.credit-line { background: var(--accent-soft); border: 1px solid var(--line-2); border-radius: var(--r); padding: 18px 20px; color: var(--ink-2); font-size: 16px; margin: 0 0 30px; }
-.credit-line b { color: var(--ink); }
-
-
-.faq { display: flex; flex-direction: column; gap: 10px; margin: 0 0 8px; }
-.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 4px 18px; }
-.faq summary { font: 700 17px var(--display); color: var(--ink); padding: 14px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; font-size: 22px; color: var(--muted); font-weight: 400; flex: none; }
-.faq details[open] summary::after { content: "\2212"; }
-.faq details p, .faq details ul { font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 0 0 16px; padding-left: 0; }
-.faq details ul { padding-left: 20px; }
-.faq-shot { margin: 0 0 18px; }
-.faq-shot img { display: block; width: 100%; max-width: 486px; height: auto; border: 1px solid var(--line); border-radius: 8px; }
-
-
-.reqs { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 22px; font-family: var(--body); font-size: 16px; color: var(--ink-2); margin: 0 0 30px; }
-.reqs b { color: var(--ink); }
-.platform-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0; }
-.support-intro { font-family: var(--body); color: var(--ink-2); font-size: 16px; max-width: 68em; margin-bottom: 8px; }
-.support-intro b { color: var(--ink); }
-.support-cat h2 { margin-bottom: 18px; }
-.alert-line { background: var(--warn-soft); border: 1px solid var(--warn-line); color: var(--warn); border-radius: 8px; padding: 12px 16px; font: 600 14px var(--mono); margin: 0 0 24px; }
-
-@media (max-width: 880px) {
-  .hero { grid-template-columns: 1fr; gap: 40px; padding-block: 24px 56px; }
-  section.pagehead { padding-block: 24px 8px; }
-  .features, .features.four, .features.two, .steps { grid-template-columns: 1fr; }
-  .feature .art { max-width: 420px; }
-  .pricing-table { font-size: 14px; }
-  .pricing-table td:first-child, .pricing-table th:first-child { width: 140px; }
+html, body { margin: 0; background: var(--ground); color: var(--ink); }
+body { font: 400 17px/1.5 "IBM Plex Sans", system-ui, sans-serif; }
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; padding: 16px 0; }
+header > a { display: flex; align-items: center; min-height: 44px; }
+header .lock { height: 30px; display: block; }
+header nav { display: flex; gap: 20px; font: 600 16px/1 "Barlow Condensed", sans-serif; letter-spacing: .03em; }
+header nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--ink2); }
+header nav a[aria-current] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--c, var(--accent)); }
+h1 { font: 800 clamp(34px, 6vw, 56px)/1.05 "Barlow Condensed", sans-serif; margin: 48px 0 12px; letter-spacing: .01em; }
+.status { display: inline-block; font: 500 13px/1 "IBM Plex Mono", monospace; letter-spacing: .04em; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; }
+.cta { display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; margin: 24px 12px 0 0; border-radius: 8px;
+  font: 700 17px/1 "Barlow Condensed", sans-serif; letter-spacing: .03em; text-decoration: none;
+  color: var(--accent); background: rgba(112,251,58,.14); border: 1px solid rgba(112,251,58,.4); }
+/* home */
+.lede { color: var(--ink2); margin: 0; font-size: 19px; }
+.apps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 40px 0 64px; }
+.app { display: flex; gap: 18px; align-items: center; padding: 22px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--surface); text-decoration: none; min-height: 120px; }
+.app:hover, .app:focus-visible { border-color: var(--c); }
+.app img { width: 72px; height: 72px; flex: none; }
+.app b { display: block; font: 800 24px/1.1 "Barlow Condensed", sans-serif; color: var(--c); }
+.app span { display: block; color: var(--ink2); margin: 4px 0 8px; }
+.app em { font: 500 12px/1 "IBM Plex Mono", monospace; font-style: normal; color: var(--muted); letter-spacing: .04em; }
+/* app page */
+.hero { display: flex; gap: 28px; align-items: center; }
+.hero img { width: 112px; height: 112px; flex: none; }
+.shots { display: grid; gap: 28px; margin: 48px 0 72px; }
+figure { margin: 0; }
+figure img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); }
+figure.narrow img { max-width: 380px; }
+figcaption { font: 600 18px/1.2 "Barlow Condensed", sans-serif; color: var(--ink2); margin-top: 10px; letter-spacing: .02em; }
+footer { border-top: 1px solid var(--line); padding: 24px 0 40px; display: flex; flex-wrap: wrap; gap: 8px 24px;
+  font-size: 14px; color: var(--muted); }
+footer a { color: var(--muted); padding: 12px 0; }
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px; }
+  .apps { grid-template-columns: 1fr; }
+  header nav { gap: 14px; font-size: 15px; }
+  .hero { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .hero img { width: 80px; height: 80px; }
+  h1 { margin-top: 24px; }
 }
-@media (max-width: 620px) {
-  .timeline { grid-template-columns: 1fr; gap: 18px; }
-  .timeline::before { display: none; }
-  .tl-step { padding: 0 0 0 28px; }
-}
-@media (max-width: 420px) {
-  body { padding-inline: 16px; }
-  .beta-chip { display: none; }
-  .btn { flex: 1 1 100%; justify-content: center; }
-  .navlinks { gap: 14px; }
-  
-}
-</style>
-</head>
-<body>
-  <header class="top">
-    <a class="brand" href="/" aria-label="Raster, home">
-      <span class="lockup"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 547.82 104.00">
+</style></head><body>
+<div class="wrap" style="--c:#e866b5"><header><a href="/" aria-label="Raster home"><svg class="lock" role="img" aria-label="Raster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 547.82 104.00">
 
 
 <mask id="rmask"><rect x="24.0" y="24.0" width="80.0" height="80.0" fill="black"/><rect x="24.000" y="24.000" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="41.067" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="58.133" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="75.200" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="92.267" width="80.000" height="11.733" fill="white"/><path d="M68.72685714285714 100.52571428571429 61.42171428571429 72.05714285714285Q61.31428571428572 71.62742857142857 60.884571428571434 71.62742857142857H59.27314285714286Q58.736000000000004 71.62742857142857 58.736000000000004 72.16457142857143V100.31085714285713Q58.736000000000004 100.848 58.36 101.22399999999999Q57.984 101.6 57.44685714285714 101.6H42.192Q41.654857142857146 101.6 41.27885714285715 101.22399999999999Q40.902857142857144 100.848 40.902857142857144 100.31085714285713V27.689142857142855Q40.902857142857144 27.152 41.27885714285715 26.776000000000003Q41.654857142857146 26.400000000000006 42.192 26.400000000000006H65.28914285714285Q71.52 26.400000000000006 76.35428571428571 29.354285714285716Q81.18857142857144 32.308571428571426 83.82057142857143 37.626285714285714Q86.45257142857142 42.944 86.45257142857142 49.712Q86.45257142857142 55.728 84.25028571428571 60.50857142857143Q82.048 65.28914285714285 78.07314285714286 68.18971428571427Q77.85828571428571 68.29714285714286 77.75085714285714 68.45828571428572Q77.64342857142857 68.61942857142857 77.75085714285714 68.83428571428571L86.98971428571429 100.09599999999999L87.09714285714286 100.52571428571429Q87.09714285714286 101.6 85.91542857142858 101.6H70.23085714285713Q69.04914285714285 101.6 68.72685714285714 100.52571428571429ZM58.736000000000004 42.192V57.44685714285714Q58.736000000000004 57.984 59.27314285714286 57.984H62.281142857142854Q65.18171428571429 57.984 66.90057142857142 55.83542857142857Q68.61942857142857 53.68685714285714 68.61942857142857 49.926857142857145Q68.61942857142857 45.952 66.90057142857142 43.80342857142857Q65.18171428571429 41.654857142857146 62.281142857142854 41.654857142857146H59.27314285714286Q58.736000000000004 41.654857142857146 58.736000000000004 42.192Z" fill="black" fill-rule="evenodd"/></mask>
@@ -235,62 +61,4 @@ img.page-shot { max-width: 520px; display: block; margin: 0 auto; }
 <path d="M58.736000000000004 42.192V57.44685714285714Q58.736000000000004 57.984 59.27314285714286 57.984H62.281142857142854Q65.18171428571429 57.984 66.90057142857142 55.83542857142857Q68.61942857142857 53.68685714285714 68.61942857142857 49.926857142857145Q68.61942857142857 45.952 66.90057142857142 43.80342857142857Q65.18171428571429 41.654857142857146 62.281142857142854 41.654857142857146H59.27314285714286Q58.736000000000004 41.654857142857146 58.736000000000004 42.192Z" fill="#70FB3A" fill-rule="evenodd"/>
 <path d="M141.12114285714284 100.51282285714285 139.24329142857144 90.13522285714285Q139.24329142857144 89.64105142857142 138.6502857142857 89.64105142857142H124.22048Q123.62747428571429 89.64105142857142 123.62747428571429 90.13522285714285L121.74962285714285 100.51282285714285Q121.65078857142856 101.6 120.46477714285714 101.6H111.47085714285714Q110.08717714285714 101.6 110.38368 100.31515428571429L125.01115428571428 33.50317714285714Q125.20882285714285 32.416 126.29599999999999 32.416H136.77243428571427Q137.85961142857144 32.416 138.05728 33.50317714285714L152.6847542857143 100.31515428571429V100.71049142857143Q152.6847542857143 101.6 151.59757714285715 101.6H142.40598857142857Q141.21997714285715 101.6 141.12114285714284 100.51282285714285ZM125.90066285714286 80.64713142857143H136.87126857142857Q137.46427428571428 80.64713142857143 137.36544 80.15296L131.63305142857143 48.921325714285715Q131.53421714285713 48.62482285714285 131.33654857142858 48.62482285714285Q131.13888 48.62482285714285 131.04004571428572 48.921325714285715L125.40649142857143 80.15296Q125.30765714285714 80.64713142857143 125.90066285714286 80.64713142857143ZM157.4288 84.50166857142857V81.93197714285714Q157.4288 81.4378057142857 157.77472 81.09188571428571Q158.12064 80.74596571428572 158.61481142857144 80.74596571428572H167.60873142857145Q168.10290285714285 80.74596571428572 168.44882285714286 81.09188571428571Q168.79474285714286 81.4378057142857 168.79474285714286 81.93197714285714V83.90866285714286Q168.79474285714286 87.7632 170.72201142857142 90.13522285714285Q172.64928 92.50724571428572 175.71314285714286 92.50724571428572Q178.7770057142857 92.50724571428572 180.75369142857141 90.28347428571428Q182.73037714285715 88.05970285714285 182.73037714285715 84.40283428571428Q182.73037714285715 81.83314285714286 181.6432 79.95529142857143Q180.55602285714286 78.07744 178.57933714285713 76.39725714285714Q176.60265142857142 74.71707428571429 172.25394285714287 71.55437714285713Q167.31222857142856 67.99634285714285 164.29778285714286 65.22898285714285Q161.28333714285714 62.461622857142856 159.25723428571428 58.557668571428565Q157.23113142857144 54.65371428571428 157.23113142857144 49.514331428571424Q157.23113142857144 41.31108571428571 162.17284571428573 36.46820571428571Q167.11456 31.625325714285708 175.21897142857142 31.625325714285708Q183.42221714285714 31.625325714285708 188.4627657142857 36.715291428571426Q193.50331428571428 41.805257142857144 193.50331428571428 50.20617142857142V52.57819428571428Q193.50331428571428 53.07236571428571 193.1573942857143 53.41828571428571Q192.8114742857143 53.76420571428571 192.31730285714286 53.76420571428571H183.42221714285714Q182.9280457142857 53.76420571428571 182.58212571428572 53.41828571428571Q182.23620571428572 53.07236571428571 182.23620571428572 52.57819428571428V50.00850285714286Q182.23620571428572 46.15396571428571 180.30893714285713 43.83136Q178.38166857142858 41.50875428571428 175.21897142857142 41.50875428571428Q172.25394285714287 41.50875428571428 170.37609142857144 43.633691428571424Q168.49824 45.75862857142857 168.49824 49.514331428571424Q168.49824 53.07236571428571 170.52434285714287 55.54322285714285Q172.55044571428573 58.01408 178.48050285714285 62.36278857142857Q184.50939428571428 66.81033142857143 187.57325714285713 69.62710857142858Q190.63712 72.44388571428571 192.31730285714286 75.80425142857143Q193.99748571428572 79.16461714285714 193.99748571428572 83.80982857142857Q193.99748571428572 92.21074285714285 188.95693714285716 97.30070857142857Q183.91638857142857 102.39067428571428 175.71314285714286 102.39067428571428Q167.50989714285714 102.39067428571428 162.46934857142855 97.44896Q157.4288 92.50724571428572 157.4288 84.50166857142857ZM238.9670857142857 33.60201142857143V41.11341714285714Q238.9670857142857 41.60758857142857 238.62116571428572 41.95350857142857Q238.27524571428572 42.29942857142857 237.78107428571428 42.29942857142857H225.22912Q224.73494857142856 42.29942857142857 224.73494857142856 42.7936V100.41398857142856Q224.73494857142856 100.90816 224.38902857142858 101.25407999999999Q224.04310857142858 101.6 223.54893714285714 101.6H214.45618285714286Q213.96201142857143 101.6 213.61609142857145 101.25407999999999Q213.27017142857144 100.90816 213.27017142857144 100.41398857142856V42.7936Q213.27017142857144 42.29942857142857 212.776 42.29942857142857H200.9158857142857Q200.4217142857143 42.29942857142857 200.0757942857143 41.95350857142857Q199.7298742857143 41.60758857142857 199.7298742857143 41.11341714285714V33.60201142857143Q199.7298742857143 33.107839999999996 200.0757942857143 32.761919999999996Q200.4217142857143 32.416 200.9158857142857 32.416H237.78107428571428Q238.27524571428572 32.416 238.62116571428572 32.761919999999996Q238.9670857142857 33.107839999999996 238.9670857142857 33.60201142857143ZM280.27981714285715 42.29942857142857H258.93161142857144Q258.43744 42.29942857142857 258.43744 42.7936V61.473279999999995Q258.43744 61.96745142857142 258.93161142857144 61.96745142857142H271.5824Q272.0765714285714 61.96745142857142 272.42249142857145 62.31337142857143Q272.7684114285714 62.65929142857143 272.7684114285714 63.153462857142856V70.76370285714285Q272.7684114285714 71.25787428571428 272.42249142857145 71.60379428571429Q272.0765714285714 71.94971428571428 271.5824 71.94971428571428H258.93161142857144Q258.43744 71.94971428571428 258.43744 72.44388571428571V91.2224Q258.43744 91.71657142857143 258.93161142857144 91.71657142857143H280.27981714285715Q280.77398857142856 91.71657142857143 281.1199085714286 92.06249142857143Q281.4658285714286 92.40841142857143 281.4658285714286 92.90258285714285V100.41398857142856Q281.4658285714286 100.90816 281.1199085714286 101.25407999999999Q280.77398857142856 101.6 280.27981714285715 101.6H248.15867428571428Q247.66450285714285 101.6 247.31858285714284 101.25407999999999Q246.97266285714284 100.90816 246.97266285714284 100.41398857142856V33.60201142857143Q246.97266285714284 33.107839999999996 247.31858285714284 32.761919999999996Q247.66450285714285 32.416 248.15867428571428 32.416H280.27981714285715Q280.77398857142856 32.416 281.1199085714286 32.761919999999996Q281.4658285714286 33.107839999999996 281.4658285714286 33.60201142857143V41.11341714285714Q281.4658285714286 41.60758857142857 281.1199085714286 41.95350857142857Q280.77398857142856 42.29942857142857 280.27981714285715 42.29942857142857ZM316.05782857142856 100.61165714285714 307.6569142857143 72.24621714285713Q307.4592457142857 71.85087999999999 307.16274285714286 71.85087999999999H301.9245257142857Q301.4303542857143 71.85087999999999 301.4303542857143 72.34505142857142V100.41398857142856Q301.4303542857143 100.90816 301.08443428571434 101.25407999999999Q300.7385142857143 101.6 300.2443428571429 101.6H291.1515885714286Q290.6574171428572 101.6 290.3114971428572 101.25407999999999Q289.96557714285717 100.90816 289.96557714285717 100.41398857142856V33.60201142857143Q289.96557714285717 33.107839999999996 290.3114971428572 32.761919999999996Q290.6574171428572 32.416 291.1515885714286 32.416H309.7324342857143Q314.97065142857144 32.416 318.97344 34.93627428571428Q322.9762285714286 37.45654857142857 325.20000000000005 42.052342857142854Q327.42377142857146 46.64813714285714 327.42377142857146 52.57819428571428Q327.42377142857146 58.70592 325.05174857142856 63.153462857142856Q322.6797257142857 67.60100571428572 318.42985142857145 69.87419428571428Q318.0345142857143 69.97302857142857 318.1333485714286 70.46719999999999L327.8191085714286 100.21632Q327.91794285714286 100.41398857142856 327.91794285714286 100.71049142857143Q327.91794285714286 101.6 326.83076571428575 101.6H317.3426742857143Q316.3543314285714 101.6 316.05782857142856 100.61165714285714ZM301.4303542857143 42.7936V62.461622857142856Q301.4303542857143 62.95579428571428 301.9245257142857 62.95579428571428H307.9534171428572Q311.51145142857143 62.95579428571428 313.73522285714284 60.18843428571428Q315.9589942857143 57.42107428571428 315.9589942857143 52.67702857142857Q315.9589942857143 47.932982857142854 313.73522285714284 45.11620571428571Q311.51145142857143 42.29942857142857 307.9534171428572 42.29942857142857H301.9245257142857Q301.4303542857143 42.29942857142857 301.4303542857143 42.7936Z" fill="#70FB3A"/>
 <path d="M356.2833828571429 100.41398857142856V33.60201142857143Q356.2833828571429 33.107839999999996 356.6293028571429 32.761919999999996Q356.9752228571429 32.416 357.4693942857143 32.416H366.5621485714286Q367.05632 32.416 367.40224 32.761919999999996Q367.74816000000004 33.107839999999996 367.74816000000004 33.60201142857143V91.2224Q367.74816000000004 91.71657142857143 368.24233142857145 91.71657142857143H389.59053714285716Q390.08470857142856 91.71657142857143 390.43062857142854 92.06249142857143Q390.7765485714286 92.40841142857143 390.7765485714286 92.90258285714285V100.41398857142856Q390.7765485714286 100.90816 390.43062857142854 101.25407999999999Q390.08470857142856 101.6 389.59053714285716 101.6H357.4693942857143Q356.9752228571429 101.6 356.6293028571429 101.25407999999999Q356.2833828571429 100.90816 356.2833828571429 100.41398857142856ZM431.19977142857147 66.81033142857143V100.41398857142856Q431.19977142857147 100.90816 430.8538514285715 101.25407999999999Q430.5079314285715 101.6 430.01376000000005 101.6H420.92100571428574Q420.42683428571434 101.6 420.08091428571436 101.25407999999999Q419.7349942857143 100.90816 419.7349942857143 100.41398857142856V98.53613714285714Q419.7349942857143 98.23963428571427 419.53732571428577 98.14079999999998Q419.3396571428572 98.04196571428571 419.1419885714286 98.33846857142856Q415.6827885714286 102.39067428571428 409.0608914285715 102.39067428571428Q403.4273371428572 102.39067428571428 399.1280457142858 99.17856Q394.82875428571435 95.96644571428571 394.82875428571435 87.46669714285714Q394.82875428571435 78.57161142857143 400.01755428571437 74.81590857142857Q405.2063542857143 71.06020571428571 414.10144 71.06020571428571H419.2408228571429Q419.7349942857143 71.06020571428571 419.7349942857143 70.56603428571428V67.99634285714285Q419.7349942857143 64.43830857142856 417.9559771428572 62.31337142857142Q416.17696000000007 60.18843428571428 413.5084342857143 60.18843428571428Q411.43291428571433 60.18843428571428 410.0492342857143 61.52269714285714Q408.66555428571434 62.856959999999994 408.3690514285715 65.13014857142858Q408.2702171428572 66.31616 407.08420571428576 66.31616H397.49728000000005Q396.3112685714286 66.31616 396.41010285714293 65.13014857142858Q396.90427428571434 58.40941714285714 401.6977371428572 54.357211428571425Q406.49120000000005 50.30500571428571 413.7061028571429 50.30500571428571Q421.5140114285715 50.30500571428571 426.3568914285715 54.85138285714285Q431.19977142857147 59.39776 431.19977142857147 66.81033142857143ZM419.7349942857143 85.78651428571428V80.15296Q419.7349942857143 79.65878857142857 419.2408228571429 79.65878857142857H414.10144Q410.7410742857143 79.65878857142857 408.66555428571434 81.48722285714285Q406.59003428571435 83.31565714285713 406.59003428571435 86.77485714285714Q406.59003428571435 89.83872 408.17138285714293 91.37065142857142Q409.75273142857145 92.90258285714285 412.22358857142865 92.90258285714285Q415.1886171428572 92.90258285714285 417.4618057142858 91.02473142857141Q419.7349942857143 89.14688 419.7349942857143 85.78651428571428ZM474.29152000000005 66.31616V86.37952Q474.29152000000005 93.69325714285714 470.6346514285715 98.04196571428571Q466.97778285714287 102.39067428571428 460.35588571428576 102.39067428571428Q455.0188342857143 102.39067428571428 451.4608 98.93147428571427Q451.26313142857146 98.73380571428571 451.06546285714285 98.83264Q450.8677942857143 98.93147428571427 450.8677942857143 99.22797714285714V100.41398857142856Q450.8677942857143 100.90816 450.52187428571426 101.25407999999999Q450.1759542857143 101.6 449.6817828571429 101.6H440.58902857142857Q440.09485714285717 101.6 439.74893714285713 101.25407999999999Q439.40301714285715 100.90816 439.40301714285715 100.41398857142856V33.60201142857143Q439.40301714285715 33.107839999999996 439.74893714285713 32.761919999999996Q440.09485714285717 32.416 440.58902857142857 32.416H449.6817828571429Q450.1759542857143 32.416 450.52187428571426 32.761919999999996Q450.8677942857143 33.107839999999996 450.8677942857143 33.60201142857143V53.56653714285714Q450.8677942857143 53.86304 451.11488 53.912457142857136Q451.36196571428576 53.96187428571428 451.6584685714286 53.56653714285714Q453.53632000000005 51.88635428571428 455.85892571428576 51.09568Q458.1815314285715 50.30500571428571 460.35588571428576 50.30500571428571Q466.8789485714286 50.30500571428571 470.58523428571436 54.55488Q474.29152000000005 58.80475428571428 474.29152000000005 66.31616ZM456.79785142857145 60.18843428571428Q454.4258285714286 60.18843428571428 452.84448000000003 61.720365714285705Q451.26313142857146 63.25229714285714 450.8677942857143 65.82198857142856V86.87369142857142Q451.26313142857146 89.44338285714285 452.84448000000003 90.97531428571429Q454.4258285714286 92.50724571428572 456.79785142857145 92.50724571428572Q459.56521142857144 92.50724571428572 461.24539428571427 90.57997714285713Q462.92557714285715 88.65270857142856 462.92557714285715 85.49001142857142V67.20566857142856Q462.92557714285715 64.04297142857143 461.24539428571427 62.11570285714286Q459.56521142857144 60.18843428571428 456.79785142857145 60.18843428571428ZM515.6042514285714 80.54829714285714H493.76187428571427Q493.26770285714287 80.54829714285714 493.26770285714287 81.04246857142857V85.49001142857142Q493.26770285714287 88.55387428571429 494.9478857142857 90.53056000000001Q496.62806857142857 92.50724571428572 499.29659428571426 92.50724571428572Q501.56978285714285 92.50724571428572 503.20054857142856 91.07414857142857Q504.83131428571426 89.64105142857142 505.3254857142857 87.36786285714285Q505.6219885714286 86.37952 506.61033142857144 86.37952L515.4065828571429 86.77485714285714Q515.9007542857142 86.77485714285714 516.2466742857143 87.12077714285715Q516.5925942857143 87.46669714285714 516.49376 88.05970285714285Q515.80192 94.97810285714286 511.4532114285714 98.68438857142857Q507.10450285714285 102.39067428571428 499.29659428571426 102.39067428571428Q491.1921828571429 102.39067428571428 486.4975542857143 98.09138285714286Q481.8029257142857 93.79209142857142 481.8029257142857 86.37952V66.31616Q481.8029257142857 59.10125714285714 486.4975542857143 54.703131428571425Q491.1921828571429 50.30500571428571 499.29659428571426 50.30500571428571Q507.4010057142857 50.30500571428571 512.0956342857143 54.703131428571425Q516.7902628571428 59.10125714285714 516.7902628571428 66.31616V79.36228571428572Q516.7902628571428 79.85645714285714 516.4443428571428 80.20237714285713Q516.0984228571429 80.54829714285714 515.6042514285714 80.54829714285714ZM493.26770285714287 67.20566857142856V71.65321142857142Q493.26770285714287 72.14738285714286 493.76187428571427 72.14738285714286H504.93014857142856Q505.42432 72.14738285714286 505.42432 71.65321142857142V67.20566857142856Q505.42432 64.04297142857143 503.74413714285714 62.11570285714286Q502.06395428571426 60.18843428571428 499.29659428571426 60.18843428571428Q496.62806857142857 60.18843428571428 494.9478857142857 62.165119999999995Q493.26770285714287 64.14180571428571 493.26770285714287 67.20566857142856ZM524.3016685714285 100.41398857142856V33.60201142857143Q524.3016685714285 33.107839999999996 524.6475885714285 32.761919999999996Q524.9935085714286 32.416 525.48768 32.416H534.5804342857143Q535.0746057142857 32.416 535.4205257142858 32.761919999999996Q535.7664457142857 33.107839999999996 535.7664457142857 33.60201142857143V100.41398857142856Q535.7664457142857 100.90816 535.4205257142858 101.25407999999999Q535.0746057142857 101.6 534.5804342857143 101.6H525.48768Q524.9935085714286 101.6 524.6475885714285 101.25407999999999Q524.3016685714285 100.90816 524.3016685714285 100.41398857142856Z" fill="#E866B5"/>
-</svg></span>
-    </a>
-    <nav class="navlinks" aria-label="Products"><a href="/build/">Build</a><a href="/label/" aria-current="page">Label</a><a href="/run/">Run</a></nav>
-  </header>
-  <main>
-    <section class="pagehead">
-      <p class="eyebrow"><img src="/assets/label-station-icon.png" alt="" width="22" height="22">Public beta</p>
-      <h1>Raster Label</h1>
-      <p class="sub">Prints the labels for your show&rsquo;s gear, straight from your tech sheet.</p>
-    </section>
-    <section class="figure-section">
-      <figure class="board magenta">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 450" role="img" aria-label="Two Label Station device tape labels (a switch and a camera) beside a segment of a printed stek strip, showing eight labeled port cells.">
-<defs>
-  <filter id="tapeShadow" x="-20%" y="-20%" width="140%" height="160%">
-    <feDropShadow dx="0" dy="3.5999999999999996" stdDeviation="4.800000000000001" flood-color="#000" flood-opacity=".38"/>
-  </filter>
-</defs>
-<rect width="100%" height="100%" fill="#14161c"/>
-<g transform="translate(96,72)"><svg width="246" height="144" viewBox="0 0 41 24"><rect width="41" height="24" rx="1" fill="#fff" filter="url(#tapeShadow)"/>
-  <rect class="tape" x="0" y="0" width="41" height="24" rx="1" fill="#fff"/>
-  
-  <text x="9.225" y="9.34" font-family="Barlow Condensed" font-weight="800" font-size="8.7" data-floor="6.5" data-collapse-to="11.8" fill="#000"><tspan id="f-device">MTX-21</tspan></text>
-  <text x="5.5" y="15.78" font-family="IBM Plex Mono" font-weight="600" font-size="5" data-floor="3.2" fill="#000"><tspan id="f-ip">10.10.1.21</tspan></text>
-  <text x="8.55" y="21.24" font-family="Barlow Condensed" font-weight="600" font-size="4.5" data-floor="3.2" data-collapse-to="18.3" fill="#000"><tspan id="f-unit" data-shorten="true">Netgear M4250</tspan></text>
-</svg></g>
-<g transform="translate(384,108)"><svg width="186" height="108" viewBox="0 0 31 18"><rect width="31" height="18" rx="1" fill="#fff" filter="url(#tapeShadow)"/>
-  <rect class="tape" x="0" y="0" width="31" height="18" rx="1" fill="#fff"/>
-  
-  <text x="8.348" y="7.1" font-family="Barlow Condensed" font-weight="800" font-size="6.2" data-floor="5.5" data-collapse-to="8.9" fill="#000"><tspan id="f-device">CAM-3</tspan></text>
-  <text x="4.7" y="11.7" font-family="IBM Plex Mono" font-weight="600" font-size="3.6" data-floor="3.2" fill="#000"><tspan id="f-ip">10.10.30.8</tspan></text>
-  <text x="9.59" y="15.6" font-family="Barlow Condensed" font-weight="600" font-size="3.2" data-floor="3.2" data-collapse-to="13.5" fill="#000"><tspan id="f-unit" data-shorten="true">Axis Q6135</tspan></text>
-</svg></g>
-<g transform="translate(96,318)"><rect width="1307.4" height="36" rx="3.0" fill="#fff"/><line x1="172.425" y1="4.5" x2="172.425" y2="31.5" stroke="#000" stroke-width="2.0999999999999996"/><line x1="332.85" y1="4.5" x2="332.85" y2="31.5" stroke="#000" stroke-width="2.0999999999999996"/><line x1="493.27500000000003" y1="4.5" x2="493.27500000000003" y2="31.5" stroke="#000" stroke-width="2.0999999999999996"/><line x1="653.7" y1="4.5" x2="653.7" y2="31.5" stroke="#000" stroke-width="2.0999999999999996"/><line x1="814.125" y1="4.5" x2="814.125" y2="31.5" stroke="#000" stroke-width="2.0999999999999996"/><line x1="974.5500000000001" y1="4.5" x2="974.5500000000001" y2="31.5" stroke="#000" stroke-width="2.0999999999999996"/><line x1="1134.975" y1="4.5" x2="1134.975" y2="31.5" stroke="#000" stroke-width="2.0999999999999996"/><text x="83.020" y="26.4" font-family="Barlow Condensed" font-weight="700" font-size="24.0" fill="#000">A1</text><text x="243.446" y="26.4" font-family="Barlow Condensed" font-weight="700" font-size="24.0" fill="#000">A2</text><text x="403.870" y="26.4" font-family="Barlow Condensed" font-weight="700" font-size="24.0" fill="#000">A3</text><text x="564.296" y="26.4" font-family="Barlow Condensed" font-weight="700" font-size="24.0" fill="#000">A4</text><text x="724.721" y="26.4" font-family="Barlow Condensed" font-weight="700" font-size="24.0" fill="#000">A5</text><text x="885.145" y="26.4" font-family="Barlow Condensed" font-weight="700" font-size="24.0" fill="#000">A6</text><text x="1045.571" y="26.4" font-family="Barlow Condensed" font-weight="700" font-size="24.0" fill="#000">A7</text><text x="1205.996" y="26.4" font-family="Barlow Condensed" font-weight="700" font-size="24.0" fill="#000">A8</text></g>
-</svg>
-      </figure>
-    </section>
-    <section>
-<p><b>Raster Label</b> reads straight from your show's tech sheet: no separate labeling software, and no retyping what's already in your gear index. Built for shop prep, the few weeks before load-in, not the run itself. Most productions already expense a label printer and tape; this fits the same line item.</p>
-<p><b>What it prints, from the same sheet:</b></p>
-<ul><li><b>Device labels,</b> front and back. Fronts come first: 18 mm on the front, 12 mm on the back.</li><li><b>Case labels</b> and <b>stek tape strips.</b></li><li><b>Cable labels</b> from your sheet's FLOW tab: every row is one cable, with the same wrap label at each end. Each label has three lines: the cable's own <b>Label</b> (or both ends, if it has none), then where it runs, then its details, like "Cat6 · 75 ft". Runs of 50 ft or more print on 24 mm tape, or 36 mm where the printer takes it.</li><li><b>Bundle sheets:</b> one line per cable, an end tag for each end of every bundle (with its color, like "FOH-1 · RED"), a Long cables sheet, and a sign-off line at the bottom.</li></ul>
-<p>Each row says whether its labels were saved or printed, and when.</p>
-<p>You see every label before it prints, and before anything prints it tells you exactly how many labels and sheets it will use. A printer that hasn't had its test print yet saves the label files for you to print from the folder instead. When something goes wrong, it says so in plain words, with a short code to quote if you write to us.</p>
-<p><b>Windows and Mac.</b> Raster Label 0.1.2 is a free public beta for Windows 10 and 11, and for Apple Silicon Macs on macOS 14 (Sonoma) or later. On a Mac it lives in the menu bar. Printing straight from Raster Label on a Mac stays off until a printer has passed its test print on a Mac: until then the button says <b>Save labels</b>, and <b>Open folder</b> takes you to the files to print yourself.</p>
-<p><a href="https://github.com/raster-tech/label-station-releases/releases/latest">Download Raster Label</a>. It isn't signed yet. On Windows, "Windows protected your PC" appears: click <b>More info → Run anyway</b>. On a Mac, drag <b>Raster Label</b> into <b>Applications</b>; the first time you open it, click <b>Done</b>, then <b>System Settings → Privacy &amp; Security → Open Anyway</b>, and <b>Open Anyway</b> again when macOS asks. The quick start guide is attached to the release.</p>
-<p>Questions, or a label that came out wrong? Email <b>support@rastertech.app</b>.</p>
-    </section>
-    <section class="figure-section">
-      <figure class="board"><img src="/assets/screenshots/label-station/ls-page-labels-preview.png" alt="The Devices tab: each device&#x27;s front and back label previewed before you save, front on 18 mm tape and back on 12 mm."></figure>
-      <figure class="board"><img src="/assets/screenshots/label-station/ls-page-cables.png" alt="The Cables tab: each cable from the FLOW tab with its label preview, showing where it runs, its type and length."></figure>
-      <figure class="board"><img class="page-shot" src="/assets/screenshots/label-station/ls-page-bundle-sheet.png" alt="A bundle sheet: the bundle&#x27;s name, where it runs, its color, and every cable in it with a Packed box."></figure>
-    </section>
-  </main>
-  <footer>
-    <p>Questions? Email <a href="mailto:support@rastertech.app">support@rastertech.app</a>. <a href="/privacy">Privacy Policy</a>.</p>
-    <p>Raster</p>
-  </footer>
-</body>
-</html>
+</svg></a><nav aria-label="Apps"><a href="/build/" style="--c:#2fd3c1">Build</a><a href="/label/" style="--c:#e866b5" aria-current=page>Label</a><a href="/run/" style="--c:#4a9eff">Run</a><a href="/manager/" style="--c:#9b6ef3">Manager</a></nav></header><main><div class="hero"><img src="/assets/label-icon.png" alt=""><div><h1>Prints the show&#x27;s labels.</h1><p class="status">Coming soon · Windows and Mac</p></div></div><div class="shots"><figure><img src="/assets/shots/ls-page-labels-preview.png" alt="Device labels previewed before printing, front and back." loading="lazy"><figcaption>Device labels</figcaption></figure><figure><img src="/assets/shots/ls-page-cables.png" alt="Cable labels from the show&#x27;s FLOW tab, one per cable." loading="lazy"><figcaption>Cable labels</figcaption></figure><figure><img src="/assets/shots/ls-page-bundle-sheet.png" alt="A bundle sheet listing every cable in the bundle." loading="lazy"><figcaption>Bundle sheets</figcaption></figure></div></main><footer><a href="mailto:support@rastertech.app">support@rastertech.app</a><a href="/run/support/">Support</a><a href="/support/error-codes/">Error codes</a><a href="/run/pricing/">Pricing</a><a href="/privacy">Privacy</a></footer></div></body></html>

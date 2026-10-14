@@ -1,233 +1,59 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f1115">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon-16.png">
-<link rel="apple-touch-icon" href="/assets/icon-180.png">
-<title>Raster Run -- Know before places.</title>
-<meta name="description" content="Raster Run checks every device on your show network against your tech sheet, and writes the proof back into it.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raster Run</title><meta name="description" content="Raster Run: Checks the show network, live.">
+<link rel="icon" href="/assets/icon-32.png"><link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400&display=swap">
 <style>
-:root {
-  color-scheme: dark;
-  --ground: #0f1115; --surface: #171a21; --surface-2: #1e212a;
-  --line: #262b36; --line-2: #333a47;
-  --ink: #e6e8eb; --ink-2: #b7bcc6; --muted: #8b909c;
-  --accent: #70fb3a; --accent-hover: #8bff5c; --on-accent: #0f1115;
-  --accent-soft: rgba(112, 251, 58, 0.16);
-  --brand-blue: #4a9eff; --brand-blue-soft: rgba(74, 158, 255, 0.16);
-  --brand-magenta: #e866b5; --brand-magenta-soft: rgba(232, 102, 181, 0.16);
-  --warn: #e0b93d; --warn-soft: #3a3315; --warn-line: #6b591f;
-  --display: "Barlow Condensed", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --r: 10px; --wrap: 1120px;
-}
+:root { --ground:#0f1115; --surface:#171a21; --line:#262b36; --ink:#e6e8eb; --ink2:#b7bcc6; --muted:#8b909c; --accent:#70fb3a; }
 * { box-sizing: border-box; }
-html { background: var(--ground); }
-html, body { overflow-x: clip; }
-body { margin: 0; background: var(--ground); color: var(--ink); font: 400 17px/1.6 var(--body); padding-inline: 20px; -webkit-font-smoothing: antialiased; }
-a { color: var(--brand-blue); }
-a:focus-visible, .btn:focus-visible, .navlinks a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-.wrap { max-width: var(--wrap); margin-inline: auto; }
-
-body > header, body > nav.subnav, body > main, body > footer { max-width: var(--wrap); margin-inline: auto; }
-main p, main li { max-width: 62ch; }   
-
-.top { display: flex; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
-
-.brand { display: flex; align-items: center; gap: 16px; min-height: 44px; text-decoration: none; }
-.lockup { display: block; height: 32px; }
-.lockup svg { display: block; height: 100%; width: auto; filter: drop-shadow(0 0 6px var(--accent-soft)); }
-.navwrap { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-.navlinks { display: flex; gap: 22px; }
-.navlinks a, .subnav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-2); text-decoration: none; font: 600 16px var(--display); letter-spacing: .01em; }
-.navlinks a[aria-current], .subnav a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--ink-2); }
-.navlinks a:hover, .subnav a:hover { color: var(--ink); }
-
-.subnav { display: flex; align-items: center; gap: 4px 22px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
-.subnav .beta-chip { margin-left: auto; }
-.beta-chip { font: 500 13px/1 var(--mono); color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 5px 7px; letter-spacing: .04em; }
-
-.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 8px; font: 700 18px/1 var(--display); letter-spacing: .02em; text-decoration: none; transition: background-color .15s ease; }
-.btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 0 24px var(--accent-soft); }
-.btn-primary:hover { background: var(--accent-hover); }
-.btn-ghost { color: var(--ink); border: 1px solid var(--line-2); }
-.btn-ghost:hover { background: var(--surface); }
-.btn svg { width: 18px; height: 18px; }
-
-.hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: center; padding-block: 48px 48px; }
-.hero.text-only { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
-.eyebrow { font: 500 14px/1.4 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
-.eyebrow img { width: 22px; height: 22px; flex: none; margin-block: -2px; }
-
-h1 { font: 800 clamp(44px, 6vw, 72px)/.95 var(--display); text-transform: uppercase; letter-spacing: -.005em; margin: 0; color: var(--ink); text-wrap: balance; }
-h2 { font: 700 clamp(30px, 3.6vw, 40px)/1.05 var(--display); text-transform: uppercase; margin: 0 0 30px; text-wrap: balance; }
-h3 { font: 700 24px/1.1 var(--display); margin: 0 0 8px; }
-.sub { font-size: 19px; color: var(--ink-2); max-width: 34em; margin: 22px 0 30px; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.fine { font: 400 14px/1.5 var(--mono); color: var(--muted); margin: 18px 0 0; }
-.board { position: relative; margin: 0 0 72px; }
-.board::before { content: ""; position: absolute; inset: -12% -8%; background: radial-gradient(closest-side, var(--brand-blue-soft), transparent); pointer-events: none; }
-.board.magenta::before { background: radial-gradient(closest-side, var(--brand-magenta-soft), transparent); }
-.board > img, .board > svg, .gallery-pair img, .mac-pair img { position: relative; display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line-2), 0 24px 60px rgba(0, 0, 0, .45); }
-.board figcaption { position: relative; font: 400 14px/1.5 var(--mono); color: var(--muted); margin-top: 12px; max-width: 62ch; }
-
-.board > img { max-width: 960px; }
-.gallery-item .board > img { max-width: 800px; }
-.gallery-item { margin: 0 0 56px; }
-.gallery-item h3 { margin-bottom: 12px; }
-.gallery-item .board { margin: 0; }
-.gallery-pair { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; min-width: 0; }
-.gallery-pair img { min-width: 0; }
-@media (max-width: 720px) { .gallery-pair { grid-template-columns: 1fr; } }
-
-.board img.tray-shot, .mac-pair img.tray-shot { width: auto; max-width: 240px; }
-.gallery-item .board img.tray-shot { margin-inline: auto; }
-.board img.panel-shot { max-width: 280px; }   
-.mac-pair { position: relative; display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; min-width: 0; }
-.mac-pair .tray-shot { flex: 0 1 240px; min-width: 0; }
-.mac-pair .dash-shot { flex: 1 1 420px; min-width: 0; }
-
-@media (max-width: 720px) { .mac-pair { flex-direction: column; } .mac-pair .tray-shot { max-width: 200px; } .mac-pair .dash-shot { flex: none; } }
-
-
-section.pagehead { padding-block: 48px 8px; border-top: 0; }
-.figure-section .board { margin: 0; }
-section { padding-block: 56px; border-top: 1px solid var(--line); }
-.features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.features.four, .features.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.feature { display: flex; flex-direction: column; gap: 18px; }
-.feature .art { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); aspect-ratio: 8 / 5; max-width: 100%; display: grid; place-items: center; overflow: hidden; }
-.feature .art > svg { width: 100%; height: auto; display: block; }
-.feature p { margin: 0; color: var(--ink-2); font-size: 16px; }
-
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
-.steps li { counter-increment: step; padding-top: 20px; border-top: 2px solid var(--line-2); color: var(--ink-2); font-size: 16px; }
-.steps li::before { content: counter(step, decimal-leading-zero); display: block; font: 500 14px/1 var(--mono); color: var(--brand-blue); margin-bottom: 14px; letter-spacing: .06em; }
-.steps strong { display: block; font: 700 22px/1.15 var(--display); color: var(--ink); margin-bottom: 6px; }
-.steps .step-list { list-style: disc; margin: 8px 0; padding-left: 20px; }
-.steps .step-list li { counter-increment: none; padding: 0; border: 0; margin: 0 0 6px; }
-.steps .step-list li::before { content: none; }
-.steps .step-tail { display: block; }
-
-.credit { font: 600 clamp(22px, 2.6vw, 30px)/1.3 var(--display); color: var(--ink-2); max-width: 30em; margin: 0; text-wrap: balance; }
-.credit b { color: var(--ink); font-weight: 700; }
-
-footer { border-top: 1px solid var(--line); padding-block: 32px 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; color: var(--muted); font-size: 14px; }
-footer p { margin: 0; max-width: 46em; }
-footer a { color: var(--ink-2); }
-
-.sweep { transform-box: view-box; transform-origin: 120px 75px; animation: sweep 6s linear infinite; }
-@keyframes sweep { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .sweep { animation: none; } .btn { transition: none; } }
-
-
-.price-note { font-family: var(--body); color: var(--ink-2); max-width: 62ch; margin: 0 0 30px; font-size: 16px; }
-.price-note b { color: var(--ink); }
-.pricing-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-.pricing-table th, .pricing-table td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 16px; }
-.pricing-table th { font: 700 15px var(--display); text-transform: uppercase; letter-spacing: .03em; color: var(--ink); background: var(--surface); }
-.pricing-table td:first-child, .pricing-table th:first-child { color: var(--muted); font: 500 14px var(--mono); width: 220px; }
-.pricing-table td { color: var(--ink-2); }
-.pricing-table .price { font: 800 22px var(--display); color: var(--ink); }
-img.page-shot { max-width: 520px; display: block; margin: 0 auto; }
-.figure-section figure + figure { margin-top: 28px; }
-.table-scroll { overflow-x: auto; margin: 0 0 28px; }
-.codes-table td:first-child, .codes-table th:first-child { width: 150px; white-space: nowrap; }
-.codes-table .ver { display: block; white-space: normal; font: 500 13px/1.4 var(--mono); color: var(--muted); }
-.codes h2 { margin: 48px 0 8px; } .codes h3 { margin: 28px 0 10px; }
-.codes h2[id], .codes h3[id], #top { scroll-margin-top: 16px; }
-.codes-jump ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 20px; padding: 0; }
-.codes-jump li { margin: 0; padding: 0; }
-.codes-jump li::before { content: none; }
-.codes-jump a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 8px; font: 600 14px/1 var(--mono); color: var(--ink); text-decoration: none; }
-.codes-jump a:hover, .codes-jump a:focus-visible { border-color: var(--accent); color: var(--accent); }
-.codes-apps a { font: 700 17px/1 var(--display); }
-.codes-top { margin: 16px 0 0; } .codes-top a { display: inline-flex; align-items: center; min-height: 44px; }
-.includes { font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 20px 0; padding-left: 20px; }
-.includes li { margin-bottom: 6px; }
-.founding { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 20px 0 30px; }
-.founding b { color: var(--ink); }
-
-
-.timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 0 0 40px; position: relative; }
-.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 2px; background: var(--line-2); }
-.tl-step { position: relative; padding: 26px 14px 0 0; }
-.tl-step::before { content: ""; position: absolute; left: 0; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--ground); border: 2px solid var(--line-2); }
-.tl-step.now::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 16px var(--accent-soft); }
-.tl-step .k { font: 500 13px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-.tl-step.now .k { color: var(--accent); }
-.tl-step .h { font: 700 20px/1.1 var(--display); margin: 6px 0 4px; color: var(--ink); }
-.tl-step p { margin: 0; color: var(--ink-2); font-size: 16px; }
-
-.tier-group { margin: 0 0 28px; }
-.tier-group .group-label { font: 700 14px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
-.tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 0 0 12px; }
-.tier-card { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--surface); padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; }
-.tier-card.hi { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-soft), 0 0 30px var(--accent-soft); }
-.tier-card .who { font: 700 20px/1.1 var(--display); color: var(--ink); }
-.tier-card .p { font: 800 36px/1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; }
-.tier-card .p small { font: 500 14px var(--mono); color: var(--muted); margin-left: 5px; letter-spacing: .02em; }
-.tier-card .desc { color: var(--ink-2); font-size: 16px; margin: 0; }
-.tier-card .soon { display: inline-block; align-self: flex-start; font: 500 13px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 3px 6px; margin-top: 2px; }
-.pricing-fine { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 20px; color: var(--ink-2); font-size: 16px; margin: 0 0 20px; }
-.pricing-fine b { color: var(--ink); }
-.credit-line { background: var(--accent-soft); border: 1px solid var(--line-2); border-radius: var(--r); padding: 18px 20px; color: var(--ink-2); font-size: 16px; margin: 0 0 30px; }
-.credit-line b { color: var(--ink); }
-
-
-.faq { display: flex; flex-direction: column; gap: 10px; margin: 0 0 8px; }
-.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 4px 18px; }
-.faq summary { font: 700 17px var(--display); color: var(--ink); padding: 14px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; font-size: 22px; color: var(--muted); font-weight: 400; flex: none; }
-.faq details[open] summary::after { content: "\2212"; }
-.faq details p, .faq details ul { font-family: var(--body); color: var(--ink-2); font-size: 16px; margin: 0 0 16px; padding-left: 0; }
-.faq details ul { padding-left: 20px; }
-.faq-shot { margin: 0 0 18px; }
-.faq-shot img { display: block; width: 100%; max-width: 486px; height: auto; border: 1px solid var(--line); border-radius: 8px; }
-
-
-.reqs { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 22px; font-family: var(--body); font-size: 16px; color: var(--ink-2); margin: 0 0 30px; }
-.reqs b { color: var(--ink); }
-.platform-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0; }
-.support-intro { font-family: var(--body); color: var(--ink-2); font-size: 16px; max-width: 68em; margin-bottom: 8px; }
-.support-intro b { color: var(--ink); }
-.support-cat h2 { margin-bottom: 18px; }
-.alert-line { background: var(--warn-soft); border: 1px solid var(--warn-line); color: var(--warn); border-radius: 8px; padding: 12px 16px; font: 600 14px var(--mono); margin: 0 0 24px; }
-
-@media (max-width: 880px) {
-  .hero { grid-template-columns: 1fr; gap: 40px; padding-block: 24px 56px; }
-  section.pagehead { padding-block: 24px 8px; }
-  .features, .features.four, .features.two, .steps { grid-template-columns: 1fr; }
-  .feature .art { max-width: 420px; }
-  .pricing-table { font-size: 14px; }
-  .pricing-table td:first-child, .pricing-table th:first-child { width: 140px; }
+html, body { margin: 0; background: var(--ground); color: var(--ink); }
+body { font: 400 17px/1.5 "IBM Plex Sans", system-ui, sans-serif; }
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; padding: 16px 0; }
+header > a { display: flex; align-items: center; min-height: 44px; }
+header .lock { height: 30px; display: block; }
+header nav { display: flex; gap: 20px; font: 600 16px/1 "Barlow Condensed", sans-serif; letter-spacing: .03em; }
+header nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--ink2); }
+header nav a[aria-current] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--c, var(--accent)); }
+h1 { font: 800 clamp(34px, 6vw, 56px)/1.05 "Barlow Condensed", sans-serif; margin: 48px 0 12px; letter-spacing: .01em; }
+.status { display: inline-block; font: 500 13px/1 "IBM Plex Mono", monospace; letter-spacing: .04em; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; }
+.cta { display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; margin: 24px 12px 0 0; border-radius: 8px;
+  font: 700 17px/1 "Barlow Condensed", sans-serif; letter-spacing: .03em; text-decoration: none;
+  color: var(--accent); background: rgba(112,251,58,.14); border: 1px solid rgba(112,251,58,.4); }
+/* home */
+.lede { color: var(--ink2); margin: 0; font-size: 19px; }
+.apps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 40px 0 64px; }
+.app { display: flex; gap: 18px; align-items: center; padding: 22px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--surface); text-decoration: none; min-height: 120px; }
+.app:hover, .app:focus-visible { border-color: var(--c); }
+.app img { width: 72px; height: 72px; flex: none; }
+.app b { display: block; font: 800 24px/1.1 "Barlow Condensed", sans-serif; color: var(--c); }
+.app span { display: block; color: var(--ink2); margin: 4px 0 8px; }
+.app em { font: 500 12px/1 "IBM Plex Mono", monospace; font-style: normal; color: var(--muted); letter-spacing: .04em; }
+/* app page */
+.hero { display: flex; gap: 28px; align-items: center; }
+.hero img { width: 112px; height: 112px; flex: none; }
+.shots { display: grid; gap: 28px; margin: 48px 0 72px; }
+figure { margin: 0; }
+figure img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); }
+figure.narrow img { max-width: 380px; }
+figcaption { font: 600 18px/1.2 "Barlow Condensed", sans-serif; color: var(--ink2); margin-top: 10px; letter-spacing: .02em; }
+footer { border-top: 1px solid var(--line); padding: 24px 0 40px; display: flex; flex-wrap: wrap; gap: 8px 24px;
+  font-size: 14px; color: var(--muted); }
+footer a { color: var(--muted); padding: 12px 0; }
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px; }
+  .apps { grid-template-columns: 1fr; }
+  header nav { gap: 14px; font-size: 15px; }
+  .hero { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .hero img { width: 80px; height: 80px; }
+  h1 { margin-top: 24px; }
 }
-@media (max-width: 620px) {
-  .timeline { grid-template-columns: 1fr; gap: 18px; }
-  .timeline::before { display: none; }
-  .tl-step { padding: 0 0 0 28px; }
-}
-@media (max-width: 420px) {
-  body { padding-inline: 16px; }
-  .beta-chip { display: none; }
-  .btn { flex: 1 1 100%; justify-content: center; }
-  .navlinks { gap: 14px; }
-  
-}
-</style>
-</head>
-<body>
-  <header class="top">
-    <a class="brand" href="/" aria-label="Raster, home">
-      <span class="lockup"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.19 104.00">
+</style></head><body>
+<div class="wrap" style="--c:#4a9eff"><header><a href="/" aria-label="Raster home"><svg class="lock" role="img" aria-label="Raster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.19 104.00">
 
 
 <mask id="rmask"><rect x="24.0" y="24.0" width="80.0" height="80.0" fill="black"/><rect x="24.000" y="24.000" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="41.067" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="58.133" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="75.200" width="80.000" height="11.733" fill="white"/><rect x="24.000" y="92.267" width="80.000" height="11.733" fill="white"/><path d="M68.72685714285714 100.52571428571429 61.42171428571429 72.05714285714285Q61.31428571428572 71.62742857142857 60.884571428571434 71.62742857142857H59.27314285714286Q58.736000000000004 71.62742857142857 58.736000000000004 72.16457142857143V100.31085714285713Q58.736000000000004 100.848 58.36 101.22399999999999Q57.984 101.6 57.44685714285714 101.6H42.192Q41.654857142857146 101.6 41.27885714285715 101.22399999999999Q40.902857142857144 100.848 40.902857142857144 100.31085714285713V27.689142857142855Q40.902857142857144 27.152 41.27885714285715 26.776000000000003Q41.654857142857146 26.400000000000006 42.192 26.400000000000006H65.28914285714285Q71.52 26.400000000000006 76.35428571428571 29.354285714285716Q81.18857142857144 32.308571428571426 83.82057142857143 37.626285714285714Q86.45257142857142 42.944 86.45257142857142 49.712Q86.45257142857142 55.728 84.25028571428571 60.50857142857143Q82.048 65.28914285714285 78.07314285714286 68.18971428571427Q77.85828571428571 68.29714285714286 77.75085714285714 68.45828571428572Q77.64342857142857 68.61942857142857 77.75085714285714 68.83428571428571L86.98971428571429 100.09599999999999L87.09714285714286 100.52571428571429Q87.09714285714286 101.6 85.91542857142858 101.6H70.23085714285713Q69.04914285714285 101.6 68.72685714285714 100.52571428571429ZM58.736000000000004 42.192V57.44685714285714Q58.736000000000004 57.984 59.27314285714286 57.984H62.281142857142854Q65.18171428571429 57.984 66.90057142857142 55.83542857142857Q68.61942857142857 53.68685714285714 68.61942857142857 49.926857142857145Q68.61942857142857 45.952 66.90057142857142 43.80342857142857Q65.18171428571429 41.654857142857146 62.281142857142854 41.654857142857146H59.27314285714286Q58.736000000000004 41.654857142857146 58.736000000000004 42.192Z" fill="black" fill-rule="evenodd"/></mask>
@@ -235,116 +61,4 @@ img.page-shot { max-width: 520px; display: block; margin: 0 auto; }
 <path d="M58.736000000000004 42.192V57.44685714285714Q58.736000000000004 57.984 59.27314285714286 57.984H62.281142857142854Q65.18171428571429 57.984 66.90057142857142 55.83542857142857Q68.61942857142857 53.68685714285714 68.61942857142857 49.926857142857145Q68.61942857142857 45.952 66.90057142857142 43.80342857142857Q65.18171428571429 41.654857142857146 62.281142857142854 41.654857142857146H59.27314285714286Q58.736000000000004 41.654857142857146 58.736000000000004 42.192Z" fill="#70FB3A" fill-rule="evenodd"/>
 <path d="M141.12114285714284 100.51282285714285 139.24329142857144 90.13522285714285Q139.24329142857144 89.64105142857142 138.6502857142857 89.64105142857142H124.22048Q123.62747428571429 89.64105142857142 123.62747428571429 90.13522285714285L121.74962285714285 100.51282285714285Q121.65078857142856 101.6 120.46477714285714 101.6H111.47085714285714Q110.08717714285714 101.6 110.38368 100.31515428571429L125.01115428571428 33.50317714285714Q125.20882285714285 32.416 126.29599999999999 32.416H136.77243428571427Q137.85961142857144 32.416 138.05728 33.50317714285714L152.6847542857143 100.31515428571429V100.71049142857143Q152.6847542857143 101.6 151.59757714285715 101.6H142.40598857142857Q141.21997714285715 101.6 141.12114285714284 100.51282285714285ZM125.90066285714286 80.64713142857143H136.87126857142857Q137.46427428571428 80.64713142857143 137.36544 80.15296L131.63305142857143 48.921325714285715Q131.53421714285713 48.62482285714285 131.33654857142858 48.62482285714285Q131.13888 48.62482285714285 131.04004571428572 48.921325714285715L125.40649142857143 80.15296Q125.30765714285714 80.64713142857143 125.90066285714286 80.64713142857143ZM157.4288 84.50166857142857V81.93197714285714Q157.4288 81.4378057142857 157.77472 81.09188571428571Q158.12064 80.74596571428572 158.61481142857144 80.74596571428572H167.60873142857145Q168.10290285714285 80.74596571428572 168.44882285714286 81.09188571428571Q168.79474285714286 81.4378057142857 168.79474285714286 81.93197714285714V83.90866285714286Q168.79474285714286 87.7632 170.72201142857142 90.13522285714285Q172.64928 92.50724571428572 175.71314285714286 92.50724571428572Q178.7770057142857 92.50724571428572 180.75369142857141 90.28347428571428Q182.73037714285715 88.05970285714285 182.73037714285715 84.40283428571428Q182.73037714285715 81.83314285714286 181.6432 79.95529142857143Q180.55602285714286 78.07744 178.57933714285713 76.39725714285714Q176.60265142857142 74.71707428571429 172.25394285714287 71.55437714285713Q167.31222857142856 67.99634285714285 164.29778285714286 65.22898285714285Q161.28333714285714 62.461622857142856 159.25723428571428 58.557668571428565Q157.23113142857144 54.65371428571428 157.23113142857144 49.514331428571424Q157.23113142857144 41.31108571428571 162.17284571428573 36.46820571428571Q167.11456 31.625325714285708 175.21897142857142 31.625325714285708Q183.42221714285714 31.625325714285708 188.4627657142857 36.715291428571426Q193.50331428571428 41.805257142857144 193.50331428571428 50.20617142857142V52.57819428571428Q193.50331428571428 53.07236571428571 193.1573942857143 53.41828571428571Q192.8114742857143 53.76420571428571 192.31730285714286 53.76420571428571H183.42221714285714Q182.9280457142857 53.76420571428571 182.58212571428572 53.41828571428571Q182.23620571428572 53.07236571428571 182.23620571428572 52.57819428571428V50.00850285714286Q182.23620571428572 46.15396571428571 180.30893714285713 43.83136Q178.38166857142858 41.50875428571428 175.21897142857142 41.50875428571428Q172.25394285714287 41.50875428571428 170.37609142857144 43.633691428571424Q168.49824 45.75862857142857 168.49824 49.514331428571424Q168.49824 53.07236571428571 170.52434285714287 55.54322285714285Q172.55044571428573 58.01408 178.48050285714285 62.36278857142857Q184.50939428571428 66.81033142857143 187.57325714285713 69.62710857142858Q190.63712 72.44388571428571 192.31730285714286 75.80425142857143Q193.99748571428572 79.16461714285714 193.99748571428572 83.80982857142857Q193.99748571428572 92.21074285714285 188.95693714285716 97.30070857142857Q183.91638857142857 102.39067428571428 175.71314285714286 102.39067428571428Q167.50989714285714 102.39067428571428 162.46934857142855 97.44896Q157.4288 92.50724571428572 157.4288 84.50166857142857ZM238.9670857142857 33.60201142857143V41.11341714285714Q238.9670857142857 41.60758857142857 238.62116571428572 41.95350857142857Q238.27524571428572 42.29942857142857 237.78107428571428 42.29942857142857H225.22912Q224.73494857142856 42.29942857142857 224.73494857142856 42.7936V100.41398857142856Q224.73494857142856 100.90816 224.38902857142858 101.25407999999999Q224.04310857142858 101.6 223.54893714285714 101.6H214.45618285714286Q213.96201142857143 101.6 213.61609142857145 101.25407999999999Q213.27017142857144 100.90816 213.27017142857144 100.41398857142856V42.7936Q213.27017142857144 42.29942857142857 212.776 42.29942857142857H200.9158857142857Q200.4217142857143 42.29942857142857 200.0757942857143 41.95350857142857Q199.7298742857143 41.60758857142857 199.7298742857143 41.11341714285714V33.60201142857143Q199.7298742857143 33.107839999999996 200.0757942857143 32.761919999999996Q200.4217142857143 32.416 200.9158857142857 32.416H237.78107428571428Q238.27524571428572 32.416 238.62116571428572 32.761919999999996Q238.9670857142857 33.107839999999996 238.9670857142857 33.60201142857143ZM280.27981714285715 42.29942857142857H258.93161142857144Q258.43744 42.29942857142857 258.43744 42.7936V61.473279999999995Q258.43744 61.96745142857142 258.93161142857144 61.96745142857142H271.5824Q272.0765714285714 61.96745142857142 272.42249142857145 62.31337142857143Q272.7684114285714 62.65929142857143 272.7684114285714 63.153462857142856V70.76370285714285Q272.7684114285714 71.25787428571428 272.42249142857145 71.60379428571429Q272.0765714285714 71.94971428571428 271.5824 71.94971428571428H258.93161142857144Q258.43744 71.94971428571428 258.43744 72.44388571428571V91.2224Q258.43744 91.71657142857143 258.93161142857144 91.71657142857143H280.27981714285715Q280.77398857142856 91.71657142857143 281.1199085714286 92.06249142857143Q281.4658285714286 92.40841142857143 281.4658285714286 92.90258285714285V100.41398857142856Q281.4658285714286 100.90816 281.1199085714286 101.25407999999999Q280.77398857142856 101.6 280.27981714285715 101.6H248.15867428571428Q247.66450285714285 101.6 247.31858285714284 101.25407999999999Q246.97266285714284 100.90816 246.97266285714284 100.41398857142856V33.60201142857143Q246.97266285714284 33.107839999999996 247.31858285714284 32.761919999999996Q247.66450285714285 32.416 248.15867428571428 32.416H280.27981714285715Q280.77398857142856 32.416 281.1199085714286 32.761919999999996Q281.4658285714286 33.107839999999996 281.4658285714286 33.60201142857143V41.11341714285714Q281.4658285714286 41.60758857142857 281.1199085714286 41.95350857142857Q280.77398857142856 42.29942857142857 280.27981714285715 42.29942857142857ZM316.05782857142856 100.61165714285714 307.6569142857143 72.24621714285713Q307.4592457142857 71.85087999999999 307.16274285714286 71.85087999999999H301.9245257142857Q301.4303542857143 71.85087999999999 301.4303542857143 72.34505142857142V100.41398857142856Q301.4303542857143 100.90816 301.08443428571434 101.25407999999999Q300.7385142857143 101.6 300.2443428571429 101.6H291.1515885714286Q290.6574171428572 101.6 290.3114971428572 101.25407999999999Q289.96557714285717 100.90816 289.96557714285717 100.41398857142856V33.60201142857143Q289.96557714285717 33.107839999999996 290.3114971428572 32.761919999999996Q290.6574171428572 32.416 291.1515885714286 32.416H309.7324342857143Q314.97065142857144 32.416 318.97344 34.93627428571428Q322.9762285714286 37.45654857142857 325.20000000000005 42.052342857142854Q327.42377142857146 46.64813714285714 327.42377142857146 52.57819428571428Q327.42377142857146 58.70592 325.05174857142856 63.153462857142856Q322.6797257142857 67.60100571428572 318.42985142857145 69.87419428571428Q318.0345142857143 69.97302857142857 318.1333485714286 70.46719999999999L327.8191085714286 100.21632Q327.91794285714286 100.41398857142856 327.91794285714286 100.71049142857143Q327.91794285714286 101.6 326.83076571428575 101.6H317.3426742857143Q316.3543314285714 101.6 316.05782857142856 100.61165714285714ZM301.4303542857143 42.7936V62.461622857142856Q301.4303542857143 62.95579428571428 301.9245257142857 62.95579428571428H307.9534171428572Q311.51145142857143 62.95579428571428 313.73522285714284 60.18843428571428Q315.9589942857143 57.42107428571428 315.9589942857143 52.67702857142857Q315.9589942857143 47.932982857142854 313.73522285714284 45.11620571428571Q311.51145142857143 42.29942857142857 307.9534171428572 42.29942857142857H301.9245257142857Q301.4303542857143 42.29942857142857 301.4303542857143 42.7936Z" fill="#70FB3A"/>
 <path d="M382.3756342857143 100.61165714285714 373.97472000000005 72.24621714285713Q373.77705142857144 71.85087999999999 373.4805485714286 71.85087999999999H368.24233142857145Q367.74816000000004 71.85087999999999 367.74816000000004 72.34505142857142V100.41398857142856Q367.74816000000004 100.90816 367.40224 101.25407999999999Q367.05632 101.6 366.5621485714286 101.6H357.4693942857143Q356.9752228571429 101.6 356.6293028571429 101.25407999999999Q356.2833828571429 100.90816 356.2833828571429 100.41398857142856V33.60201142857143Q356.2833828571429 33.107839999999996 356.6293028571429 32.761919999999996Q356.9752228571429 32.416 357.4693942857143 32.416H376.05024000000003Q381.28845714285717 32.416 385.29124571428576 34.93627428571428Q389.2940342857143 37.45654857142857 391.5178057142857 42.052342857142854Q393.7415771428572 46.64813714285714 393.7415771428572 52.57819428571428Q393.7415771428572 58.70592 391.36955428571434 63.153462857142856Q388.99753142857145 67.60100571428572 384.7476571428572 69.87419428571428Q384.35232 69.97302857142857 384.4511542857143 70.46719999999999L394.1369142857143 100.21632Q394.2357485714286 100.41398857142856 394.2357485714286 100.71049142857143Q394.2357485714286 101.6 393.1485714285715 101.6H383.66048Q382.6721371428572 101.6 382.3756342857143 100.61165714285714ZM367.74816000000004 42.7936V62.461622857142856Q367.74816000000004 62.95579428571428 368.24233142857145 62.95579428571428H374.2712228571429Q377.82925714285716 62.95579428571428 380.0530285714286 60.18843428571428Q382.27680000000004 57.42107428571428 382.27680000000004 52.67702857142857Q382.27680000000004 47.932982857142854 380.0530285714286 45.11620571428571Q377.82925714285716 42.29942857142857 374.2712228571429 42.29942857142857H368.24233142857145Q367.74816000000004 42.29942857142857 367.74816000000004 42.7936ZM425.07204571428576 51.095679999999994H434.1648Q434.6589714285715 51.095679999999994 435.00489142857145 51.441599999999994Q435.35081142857143 51.78752 435.35081142857143 52.28169142857143V100.41398857142856Q435.35081142857143 100.90816 435.00489142857145 101.25407999999999Q434.6589714285715 101.6 434.1648 101.6H425.07204571428576Q424.5778742857143 101.6 424.2319542857143 101.25407999999999Q423.88603428571435 100.90816 423.88603428571435 100.41398857142856V98.23963428571427Q423.88603428571435 97.94313142857142 423.68836571428574 97.84429714285713Q423.4906971428572 97.74546285714285 423.2930285714286 98.04196571428571Q420.42683428571434 102.29184 414.10144 102.29184Q408.0725485714286 102.29184 404.36626285714294 98.68438857142857Q400.6599771428572 95.07693714285713 400.6599771428572 87.56553142857142V52.28169142857143Q400.6599771428572 51.78752 401.0058971428572 51.441599999999994Q401.35181714285716 51.095679999999994 401.8459885714286 51.095679999999994H410.93874285714287Q411.43291428571433 51.095679999999994 411.7788342857143 51.441599999999994Q412.12475428571435 51.78752 412.12475428571435 52.28169142857143V85.09467428571428Q412.12475428571435 92.50724571428572 417.8571428571429 92.50724571428572Q420.7233371428572 92.50724571428572 422.30468571428577 90.38230857142857Q423.88603428571435 88.25737142857142 423.88603428571435 84.60050285714286V52.28169142857143Q423.88603428571435 51.78752 424.2319542857143 51.441599999999994Q424.5778742857143 51.095679999999994 425.07204571428576 51.095679999999994ZM479.0355657142857 66.81033142857143V100.41398857142856Q479.0355657142857 100.90816 478.6896457142857 101.25407999999999Q478.3437257142857 101.6 477.8495542857143 101.6H468.7568Q468.2626285714286 101.6 467.91670857142856 101.25407999999999Q467.5707885714286 100.90816 467.5707885714286 100.41398857142856V67.69984Q467.5707885714286 64.14180571428571 466.0882742857143 62.165119999999995Q464.60576000000003 60.18843428571428 461.83840000000004 60.18843428571428Q458.97220571428574 60.18843428571428 457.39085714285716 62.263954285714284Q455.8095085714286 64.33947428571429 455.8095085714286 67.99634285714285V100.41398857142856Q455.8095085714286 100.90816 455.46358857142855 101.25407999999999Q455.11766857142857 101.6 454.62349714285716 101.6H445.53074285714285Q445.03657142857145 101.6 444.6906514285714 101.25407999999999Q444.34473142857144 100.90816 444.34473142857144 100.41398857142856V52.28169142857143Q444.34473142857144 51.78752 444.6906514285714 51.441599999999994Q445.03657142857145 51.095679999999994 445.53074285714285 51.095679999999994H454.62349714285716Q455.11766857142857 51.095679999999994 455.46358857142855 51.441599999999994Q455.8095085714286 51.78752 455.8095085714286 52.28169142857143V54.25837714285714Q455.8095085714286 54.55488 456.0565942857143 54.604297142857135Q456.30368000000004 54.65371428571428 456.6001828571429 54.25837714285714Q459.9605485714286 50.30500571428571 465.98944 50.30500571428571Q472.4136685714286 50.30500571428571 475.72461714285714 54.60429714285714Q479.0355657142857 58.90358857142857 479.0355657142857 66.81033142857143Z" fill="#4A9EFF"/>
-</svg></span>
-    </a>
-    <nav class="navlinks" aria-label="Products"><a href="/build/">Build</a><a href="/label/">Label</a><a href="/run/" aria-current="page">Run</a></nav>
-  </header>
-  <nav class="subnav" aria-label="Raster Run"><a href="/run/" aria-current="page">Overview</a><a href="/run/pricing/">Pricing</a><a href="/run/beta/">Beta</a><a href="/run/support/">Support</a><span class="beta-chip">EARLY BETA</span></nav>
-  <main id="top">
-    <div class="hero">
-      <div>
-        <p class="eyebrow">Show network audit</p>
-        <h1>Know before places.</h1>
-        <p class="sub">Raster Run checks every device on your show network against your tech sheet, and writes the proof back into it.</p>
-        <div class="actions">
-          <a class="btn btn-primary" href="/run/beta/">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
-            Join the beta
-          </a>
-          <a class="btn btn-ghost" href="/run/pricing/">See pricing</a>
-        </div>
-        <p class="fine">Early beta · Windows and Apple Silicon Mac · Free while in beta</p>
-      </div>
-    </div>
-    <figure class="board">
-      <img src="/assets/screenshots/tech-sheet/02-dashboard-hero.png" alt="The Raster Run dashboard showing a demo show&rsquo;s audit results: devices marked Verified, Partial or Failed, none unchecked.">
-      <figcaption>Sample data · Raster Run dashboard</figcaption>
-    </figure>
-
-    <section aria-labelledby="action-h">
-      <h2 id="action-h">See it in action</h2>
-      <div class="gallery-item">
-        <h3>Lives in the tray</h3>
-      <figure class="board">
-        <img class="tray-shot" src="/assets/screenshots/tech-sheet/01-tray.png" alt="The Raster Run tray panel showing live status counts and a Needs Attention list, without opening the full dashboard.">
-        <figcaption>Lives in the tray (Windows) or the menu bar (Mac). One click to open the dashboard, no separate app to hunt for.</figcaption>
-      </figure>
-      </div>
-      <div class="gallery-item">
-        <h3>On any phone</h3>
-      <figure class="board">
-        <img class="tray-shot" src="/assets/screenshots/tech-sheet/ts-landing-phone-view.png" alt="The Raster Run dashboard mid-scan, devices grouped by equipment type and color-coded Verified, Partial or Failed.">
-        <figcaption>The same dashboard, live, on the laptop running it or on any phone on the show network, no app to install. <b>Open on a phone or tablet</b> shows the address and a QR code to scan.</figcaption>
-      </figure>
-      </div>
-      <div class="gallery-item">
-        <h3>The full picture</h3>
-      <figure class="board">
-        <img src="/assets/screenshots/tech-sheet/04-device-detail-closeup.png" alt="A device group expanded to show each device&rsquo;s location, network status and verification state.">
-        <figcaption>Tap any device for the full picture: what it should be, what it actually is, and when it last checked in.</figcaption>
-      </figure>
-      </div>
-      <div class="gallery-item">
-        <h3>Sliced the way you walk the room</h3>
-      <figure class="board">
-        <img src="/assets/screenshots/tech-sheet/05-dashboard-location-closeup.png" alt="The Raster Run dashboard grouped by physical location: Rack, Stage, FOH, Balcony.">
-        <figcaption>Group by equipment, location or category: the same checks, sliced the way you walk the room.</figcaption>
-      </figure>
-      </div>
-      <div class="gallery-item">
-        <h3>Point it once</h3>
-      <figure class="board">
-        <img class="tray-shot panel-shot" src="/assets/screenshots/tech-sheet/08-settings-closeup.png" alt="The Raster Run settings panel, opened over the dashboard.">
-        <figcaption>Point it at your show sheet once. It remembers.</figcaption>
-      </figure>
-      </div>
-    </section>
-
-    <section aria-labelledby="features-h">
-      <h2 id="features-h">Built around the sheet you already keep</h2>
-      <div class="features four">
-        <article class="feature">
-          <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Tech sheet read into Raster Run"><defs><radialGradient id="raster-spot-sheet-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#raster-spot-sheet-glow)"/><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M26 32H66L86 52V120a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V36a4 4 0 0 1 4-4Z" stroke="#b7bcc6"/><path d="M66 32V52H86" stroke="#b7bcc6"/><path d="M34 68H72M34 80H72M34 92H62M34 104H68" stroke="#333a47"/><path d="M98 76H134" stroke="#4a9eff" stroke-width="2"/><path d="M127 69l7 7-7 7" stroke="#4a9eff" stroke-width="2"/><rect x="152" y="54" width="52" height="36" rx="4" stroke="#b7bcc6"/><path d="M144 99H212" stroke="#b7bcc6"/></g></svg></div>
-          <div><h3>Starts from your tech sheet</h3><p>No new database to fill in. It reads the gear list, IPs and VLANs you already keep in Google Sheets. No sheet yet? <b>Raster Build</b> makes one.</p></div>
-        </article>
-        <article class="feature">
-          <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Three status icons: verified, partial and failed"><defs><radialGradient id="raster-spot-status-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#raster-spot-status-glow)"/><svg x="40" y="42" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2fb35c" stroke-width="0.90" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/></svg><path d="M42 100H78M48 112H72" stroke="#333a47" stroke-width="1.5" stroke-linecap="round"/><svg x="100" y="42" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e0b93d" stroke-width="0.90" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.2L2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4M12 16.8h.01"/></svg><path d="M102 100H138M108 112H132" stroke="#333a47" stroke-width="1.5" stroke-linecap="round"/><svg x="160" y="42" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e2504a" stroke-width="0.90" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><path d="M162 100H198M168 112H192" stroke="#333a47" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-          <div><h3>Every device, verified</h3><p>Audit the whole show network, VLAN by VLAN. Each device is marked Verified, Partial or Failed, right in the sheet.</p></div>
-        </article>
-        <article class="feature">
-          <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Radar sweep watching the devices on the show network"><defs><radialGradient id="raster-spot-audit-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#raster-spot-audit-glow)"/><g transform="translate(60 15)" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="60" r="44" stroke="#333a47" stroke-width="1.5"/><circle cx="60" cy="60" r="28" stroke="#333a47" stroke-width="1.5"/><circle cx="60" cy="60" r="12" stroke="#333a47" stroke-width="1.5"/><g class="sweep"><path d="M60 16A44 44 0 0 1 91.1 28.9L60 60Z" fill="#4a9eff" fill-opacity=".16" stroke="none"/><path d="M60 60L91.1 28.9" stroke="#4a9eff" stroke-width="2"/></g><circle cx="84" cy="44" r="3.5" fill="#b7bcc6"/><circle cx="38" cy="78" r="3.5" fill="#b7bcc6"/><circle cx="74" cy="90" r="3.5" fill="#5b6270"/><circle cx="34" cy="40" r="3.5" fill="#5b6270"/></g></svg></div>
-          <div><h3>Keeps watching</h3><p>A live dashboard on the tech table and on your phone. It alerts you when a device drops, and marks the screen stale if it stops updating.</p></div>
-        </article>
-        <article class="feature">
-          <div class="art"><svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="A show machine's screen opened on your own laptop over the network"><defs><radialGradient id="raster-spot-remote-glow" cx="120.0" cy="75.0" r="75.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a9eff" stop-opacity=".16"/><stop offset="1" stop-color="#4a9eff" stop-opacity="0"/></radialGradient></defs><rect width="240" height="150" fill="url(#raster-spot-remote-glow)"/><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><rect x="22" y="38" width="64" height="44" rx="4" stroke="#b7bcc6"/><path d="M54 82v16M42 98H66" stroke="#b7bcc6"/><path d="M32 52H62M32 62H74M32 72H54" stroke="#333a47"/><path d="M98 68H134" stroke="#4a9eff" stroke-width="2" stroke-dasharray="4 5"/><path d="M127 61l7 7-7 7" stroke="#4a9eff" stroke-width="2"/><rect x="152" y="38" width="60" height="44" rx="4" stroke="#b7bcc6"/><path d="M144 98H220" stroke="#b7bcc6"/><path d="M161 52H189M161 62H200M161 72H181" stroke="#333a47"/></g></svg></div>
-          <div><h3>Watch from anywhere</h3><p>Open any device&rsquo;s screen right from the dashboard — on the show network, or from home over your own private network. No separate VNC app to configure.</p></div>
-        </article>
-      </div>
-    </section>
-
-    <section aria-labelledby="mac-h">
-      <h2 id="mac-h">Also on Mac</h2>
-      <figure class="board">
-        <div class="mac-pair">
-          <img class="tray-shot" src="/assets/screenshots/tech-sheet/mac-tray.png" alt="The Raster Run tray icon and menu on macOS.">
-          <img class="dash-shot" src="/assets/screenshots/tech-sheet/mac-dashboard.png" alt="The Raster Run dashboard running on macOS, showing the same audit view as Windows.">
-        </div>
-        <figcaption>Windows, or Apple Silicon Macs running macOS 14 Sonoma or later — the same dashboard either way.</figcaption>
-      </figure>
-    </section>
-
-    <section id="how" aria-labelledby="how-h">
-      <h2 id="how-h">How it works</h2>
-      <ol class="steps">
-        <li><strong>Pick your show:</strong>join the tech sheet you already keep (no sheet yet? make one in Raster Build).</li>
-        <li><strong>Plug into the show network</strong>and press <b>Audit Now</b>. If this computer needs its show VLANs set up, network setup does it from your sheet.</li>
-        <li><strong>Read the results</strong>in your sheet, then leave the dashboard up for the show. When something needs attention, it says so in plain words, with a short code to quote if you write to us.</li>
-      </ol>
-    </section>
-  </main>
-  <footer>
-    <p>Raster Run is in early beta. Expect rough edges, and tell us what breaks. Questions: <a href="/run/support/">Support</a>. <a href="/privacy">Privacy Policy</a>.</p>
-    <p>Raster</p>
-  </footer>
-</body>
-</html>
+</svg></a><nav aria-label="Apps"><a href="/build/" style="--c:#2fd3c1">Build</a><a href="/label/" style="--c:#e866b5">Label</a><a href="/run/" style="--c:#4a9eff" aria-current=page>Run</a><a href="/manager/" style="--c:#9b6ef3">Manager</a></nav></header><main><div class="hero"><img src="/assets/run-icon.png" alt=""><div><h1>Checks the show network, live.</h1><p class="status">Public beta · Windows and Mac</p><a class="cta" href="https://github.com/raster-tech/tech-sheet-releases/releases/latest">Download</a></div></div><div class="shots"><figure><img src="/assets/shots/02-dashboard-hero.png" alt="The Raster Run dashboard: every device on the show network marked Verified, Partial or Failed." loading="lazy"><figcaption>Every device, checked</figcaption></figure><figure class="narrow"><img src="/assets/shots/ts-landing-phone-view.png" alt="The same dashboard on a phone on the show network." loading="lazy"><figcaption>On your phone</figcaption></figure><figure class="narrow"><img src="/assets/shots/01-tray.png" alt="The tray panel with live status counts." loading="lazy"><figcaption>In the tray</figcaption></figure></div></main><footer><a href="mailto:support@rastertech.app">support@rastertech.app</a><a href="/run/support/">Support</a><a href="/support/error-codes/">Error codes</a><a href="/run/pricing/">Pricing</a><a href="/privacy">Privacy</a></footer></div></body></html>
